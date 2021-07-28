@@ -3,7 +3,11 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import About from "./components/About";
+import Board from "./components/Board";
 import Nav from './components/Header/Nav'
+import Home from "./components/Home";
+import NoMatch from "./components/NoMatch";
 
 function App() {
   return (
@@ -11,17 +15,17 @@ function App() {
       <Nav />
 
       <Switch>
-        <Route path="/">
-          {/* add landing page */}
+        <Route exact path="/">
+          <Home />
         </Route>
-        <Route path="/play">
-          {/* add gameboard component */}
+        <Route exact path="/play">
+          <Board />
         </Route>
         <Route exact path="/about">
-          {/* add about component */}
+          <About />
         </Route>
         <Route path="*">
-          {/* add fallback */}
+          <NoMatch />
         </Route>
       </Switch>
     </ Router>
