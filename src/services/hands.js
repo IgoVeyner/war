@@ -1,3 +1,7 @@
+import { dispatch } from 'react-redux'
+
+const dispatch = dispatch()
+
 const createDeck = () => {
   const suits = ["Hearts", "Spades", "Diamonds", "Clover"]
   const ranks = [
