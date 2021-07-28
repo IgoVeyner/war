@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { setPlayerHand, setComputerHand } from '../../redux/actions/handActions'
-import { getHands } from "../../services/hands"
+import { getHands, getCard } from "../../services/hands"
+import InGame from './ingame'
 import PreGameLobby from './pregame'
 
 const Board = () => {
@@ -17,19 +18,24 @@ const Board = () => {
     dispatch(setComputerHand(hands[1]))
   }
 
+  const getNextCards = () => {
+    const playerCard = getCard(playerHand)
+    const computerCard = getCard(computerHand)
+    console.log(playerCard)
+    console.log(computerCard)
+  }
+
   return (
     <div>
       { playerCards === 0 && computerCards === 0 ? 
         <PreGameLobby startGame={startGame} /> 
         :
-        null  
+        <InGame 
+          playerCards={playerCards} 
+          computerCards={computerCards} 
+          getNextCards={getNextCards}
+        />
       }
-      <div>
-        Player has {playerCards} cards
-      </div>
-      <div>
-        Computer has {computerCards} cards
-      </div>
     </div>
   )
 }

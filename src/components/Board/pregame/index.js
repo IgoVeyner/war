@@ -2,7 +2,8 @@ const PreGameLobby = ({ startGame }) => {
   return (
   <button onClick={startGame}>
     Deal Cards
-  </button>)
+  </button>
+  )
 }
 
 export default PreGameLobby

@@ -23,13 +23,18 @@ export const getRandomCard = (deck) => {
   return deck.splice(Math.floor(Math.random() * deck.length), 1)
 }
 
+export const getCard = (deck) => {
+  return deck['hand'][Math.floor(Math.random() * deck['hand'].length)]
+}
+
 export const getHands = () => {
   const deck = createDeck()
   const hand2 = []
 
   while (deck.length !== 26) {
-    hand2.push(getRandomCard(deck))
+    const [ card ] = getRandomCard(deck)
+    hand2.push(card)
   }
-
+  
   return [deck, hand2]
 }
