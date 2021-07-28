@@ -14,20 +14,22 @@ function App() {
     <Router>
       <Nav />
 
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/play">
-          <Board />
-        </Route>
-        <Route exact path="/about">
-          <About />
-        </Route>
-        <Route path="*">
-          <NoMatch />
-        </Route>
-      </Switch>
+      <main>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/play">
+            <Board />
+          </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
+          <Route path="*">
+            <NoMatch />
+          </Route>
+        </Switch>
+      </main>
     </ Router>
   );
 }
