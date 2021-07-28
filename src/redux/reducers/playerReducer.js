@@ -3,7 +3,7 @@ const handlePlayer = (state = {
                       }, action) => {
   switch (action.type) {
     case "RESET_HAND":
-      return { hand: [] }
+      return action.payload
 
     case "SET_HAND":
       // set the new hand
