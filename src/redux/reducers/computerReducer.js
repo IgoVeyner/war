@@ -2,14 +2,14 @@ const handleComputer = (state = {
   hand: []
                       }, action) => {
   switch (action.type) {
-    case "RESET_HAND":
+    case "RESET_COMPUTER_HAND":
       return action.payload
 
-    case "SET_HAND":
-      // set the new hand
-      return action.payload
+    case "SET_COMPUTER_HAND":
+      const newState = {...state = {hand: action.payload}}
+      return newState
 
-    case "REMOVE_CARD":
+    case "REMOVE_COMPUTER_CARD":
       // remove from hand the card from action.payload
       return action.payload
 

@@ -1,20 +1,29 @@
-export const resetHand = () => {
+const resetHand = (person) => {
   return {
-    type: "RESET_HAND",
+    type: `RESET_${person}_HAND`,
     payload: []
   }
 }
 
-export const setHand = (cards) => {
+const setHand = (cards, person) => {
   return {
-    type: "SET_HAND",
+    type: `SET_${person}_HAND`,
     payload: cards
   }
 }
 
-export const removeCard = (card) => {
+const removeCard = (card, person) => {
   return {
-    type: "REMOVE_CARD",
+    type: `REMOVE_${person}_CARD`,
     payload: card
   }
 }
+
+export const resetPlayerHand = () => resetHand("PLAYER")
+export const resetComputerHand = () => resetHand("COMPUTER")
+
+export const setPlayerHand = (cards) => setHand(cards, "PLAYER")
+export const setComputerHand = (cards) => setHand(cards, "COMPUTER")
+
+export const removePlayerCard = (card) => removeCard(card, "PLAYER")
+export const removeComputerCard = (card) => removeCard(card, "COMPUTER")

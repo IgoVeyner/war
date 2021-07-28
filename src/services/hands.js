@@ -1,7 +1,3 @@
-import { dispatch } from 'react-redux'
-
-const dispatch = dispatch()
-
 const createDeck = () => {
   const suits = ["Hearts", "Spades", "Diamonds", "Clover"]
   const ranks = [
@@ -31,9 +27,9 @@ export const getHands = () => {
   const deck = createDeck()
   const hand2 = []
 
-  while (deck.length != 26) {
-    hand1.push(getRandomCard(deck))
+  while (deck.length !== 26) {
+    hand2.push(getRandomCard(deck))
   }
 
-  // update player and AI hands
+  return [deck, hand2]
 }
