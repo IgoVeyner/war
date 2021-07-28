@@ -6,12 +6,10 @@ const handleComputer = (state = {
       return action.payload
 
     case "SET_COMPUTER_HAND":
-      const newState = {...state = {hand: action.payload}}
-      return newState
+      return {...state = {hand: action.payload}}
 
     case "REMOVE_COMPUTER_CARD":
-      // remove from hand the card from action.payload
-      return action.payload
+      return {...state = {hand: state['hand'].filter(hand => hand !== action.payload)}}
 
     default: 
       return state
