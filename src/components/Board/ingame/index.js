@@ -5,7 +5,6 @@ const InGame = ({ playerCards, playerUsed,
                   tableCards, getNextCards, 
                   compareLastCards, tieStatus }) => {
   useEffect(() => {
-
     if (tableCards && tieStatus === false) {
       compareLastCards()
     }

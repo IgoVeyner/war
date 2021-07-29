@@ -66,9 +66,7 @@ const Board = () => {
     const result = compareCards(lastPlayerCard, lastComputerCard)
 
     if (result === "TIE") {
-      console.log("TODO: TIE")
       setTieStatus(true)
-
     } else if (result === "PLAYER") {
       dispatch(addToPlayerUsed(cardsOnTable))
       dispatch(clearTable({
