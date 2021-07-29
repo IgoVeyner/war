@@ -4,11 +4,7 @@ const handleTable = (state = {
                     }, action) => {
   switch (action.type) {
     case "ADD_TO_TABLE":
-      const [ key ] = Object.keys(action.payload),
-            [ value ] = Object.values(action.payload),
-            newState = { ...state }
-      newState[key] = value
-      return newState
+      return action.payload
 
     case "CLEAR_TABLE":
       return action.payload
