@@ -72,12 +72,18 @@ const Board = () => {
     computerTurn()
   }
 
-  return (
-    <div>
-      { gameStatus !== true ? 
-        <PreGameLobby startGame={startGame} /> 
-        :
-        <InGame 
+  const renderView = () => {
+    if (gameStatus !== true) {
+      return <PreGameLobby startGame={startGame} />
+    } else {
+      if (playerCards === 0 && computerCards === 0) {
+        console.log("its a tie")
+      } else if (playerCards === 0) {
+        console.log("computer wins")
+      } else if (computerCards === 0) {
+        console.log("player wins")
+      } else {
+        return <InGame 
           playerCards={playerCards} 
           playerUsed={playerUsed}
           computerCards={computerCards}
@@ -87,6 +93,12 @@ const Board = () => {
           compareLastCards={compareLastCards}
         />
       }
+    }
+  }
+
+  return (
+    <div>
+      { renderView() }
     </div>
   )
 }
