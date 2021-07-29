@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 
-const InGame = ({ playerCards, computerCards, 
-                  tableCards, getNextCards, 
-                  compareLastCards }) => {
+const InGame = ({ playerCards, playerUsed,
+                  computerCards, computerUsed,
+                  tableCards, getNextCards, compareLastCards }) => {
   useEffect(() => {
 
     if (tableCards) {
@@ -16,10 +16,10 @@ const InGame = ({ playerCards, computerCards,
   return (
     <div>
       <div>
-        Player has {playerCards} cards
+        Player has {playerCards} cards and {playerUsed} in their used pile
       </div>
       <div>
-        Computer has {computerCards} cards
+        Computer has {computerCards} cards and {computerUsed} in their used pile
       </div>
       <div>
         Table has {tableCards} cards

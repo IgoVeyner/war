@@ -1,15 +1,31 @@
 const handleComputer = (state = {
-  hand: []
+  hand: [],
+  used: []
                       }, action) => {
   switch (action.type) {
     case "RESET_COMPUTER_HAND":
       return action.payload
 
     case "SET_COMPUTER_HAND":
-      return {...state = {hand: action.payload}}
+      return {
+        hand: action.payload,
+        used: state["used"]
+      }
 
     case "REMOVE_COMPUTER_CARD":
-      return {...state = {hand: state['hand'].filter(hand => hand !== action.payload)}}
+      return {
+        hand: state['hand'].filter(hand => hand !== action.payload),
+        used: [...state['used']]
+      }
+
+    case "ADD_TO_COMPUTER_USED":
+      const [ playerCards, computerCards ] = Object.values(action.payload),
+        usedCards = [...playerCards, ...computerCards]
+
+      return {
+        hand: [...state['hand']],
+        used: [...state['used'], ...usedCards]
+      }  
 
     default: 
       return state

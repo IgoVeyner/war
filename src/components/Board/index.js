@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { 
   setPlayerHand, setComputerHand,
-  removePlayerCard, removeComputerCard
+  removePlayerCard, removeComputerCard,
+  addToPlayerUsed, addToComputerUsed
   } from '../../redux/actions/handActions'
-import { addToTable } from '../../redux/actions/tableActions'
+import { addToTable, clearTable } from '../../redux/actions/tableActions'
 import { getHands, getCard, compareCards } from "../../services/hands"
 import InGame from './ingame'
 import PreGameLobby from './pregame'
@@ -15,8 +16,11 @@ const Board = () => {
   const cardsOnTable = useSelector(state => state.table)
 
   const playerCards = playerHand['hand'].length
+  const playerUsed = playerHand['used'].length
   const computerCards = computerHand['hand'].length
+  const computerUsed = computerHand['used'].length
   const tableCards = cardsOnTable['player'].length + cardsOnTable['computer'].length
+
 
   const startGame = () => {
     const hands = getHands()
@@ -44,7 +48,19 @@ const Board = () => {
     const lastPlayerCard = cardsOnTable["player"][cardsOnTable["player"].length - 1],
       lastComputerCard = cardsOnTable["computer"][cardsOnTable["computer"].length  -1]
     
-    compareCards(lastPlayerCard, lastComputerCard)
+    const result = compareCards(lastPlayerCard, lastComputerCard)
+
+    if (result === "TIE") {
+      console.log("TODO: TIE")
+    } else if (result === "PLAYER") {
+      dispatch(addToPlayerUsed(cardsOnTable))
+    } else {
+      dispatch(addToComputerUsed(cardsOnTable))
+    }
+    dispatch(clearTable({
+      player: [],
+      computer: []
+    }))
   }
 
   const getNextCards = () => {
@@ -59,7 +75,9 @@ const Board = () => {
         :
         <InGame 
           playerCards={playerCards} 
+          playerUsed={playerUsed}
           computerCards={computerCards}
+          computerUsed={computerUsed}
           tableCards={tableCards}
           getNextCards={getNextCards}
           compareLastCards={compareLastCards}

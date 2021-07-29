@@ -48,10 +48,10 @@ export const compareCards = (player, computer) => {
     computerRank = rankings[computer['rank']]
 
   if (playerRank === computerRank) {
-    console.log("Same!")
+    return "TIE"
   } else if (playerRank > computerRank) {
-    console.log("Player wins round")
+    return "PLAYER"
   } else {
-    console.log("Computer wins round")
+    return "COMPUTER"
   }
 }
