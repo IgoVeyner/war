@@ -13,7 +13,9 @@ import PreGameLobby from './pregame'
 
 const Board = () => {
   const [gameStatus, setGameStatus] = useState(false),
-
+    [tieStatus, setTieStatus] = useState(false),
+    [tieCount, setTieCount] = useState(0),
+  
     dispatch = useDispatch(),
     playerHand = useSelector(state => state.player),
     computerHand = useSelector(state => state.computer),
@@ -36,6 +38,8 @@ const Board = () => {
   }
 
   const playerTurn = () => {
+    console.log(tieStatus, tieCount, cardsOnTable)
+
     if (playerUsed && playerCards === 1) {
       addToPlayerHand()
       dispatch(clearPlayerUsed([]))
@@ -69,18 +73,37 @@ const Board = () => {
 
     if (result === "TIE") {
       console.log("TODO: TIE")
+      setTieStatus(true)
+
     } else if (result === "PLAYER") {
       dispatch(addToPlayerUsed(cardsOnTable))
+      dispatch(clearTable({
+        player: [],
+        computer: []
+      }))
     } else {
       dispatch(addToComputerUsed(cardsOnTable))
+      dispatch(clearTable({
+        player: [],
+        computer: []
+      }))
     }
-    dispatch(clearTable({
-      player: [],
-      computer: []
-    }))
+  }
+
+  const resetTieStatusAndCount = () => {
+    setTieStatus(false)
+    setTieCount(0)
   }
 
   const getNextCards = () => {
+    if (tieCount === 2) {
+      resetTieStatusAndCount()
+    } 
+
+    if (tieStatus && tieCount !== 2) {
+      setTieCount(tieCount + 1)
+    }
+      
     playerTurn()
     computerTurn()
   }
@@ -106,6 +129,7 @@ const Board = () => {
           tableCards={tableCards}
           getNextCards={getNextCards}
           compareLastCards={compareLastCards}
+          tieStatus={tieStatus}
         />
       }
     }
