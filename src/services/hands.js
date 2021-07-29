@@ -38,3 +38,20 @@ export const getHands = () => {
   
   return [deck, hand2]
 }
+
+export const compareCards = (player, computer) => {
+  const rankings = {
+    "2": 0, "3": 1, "4": 2, "5": 3, "6": 4, "7": 5, "8": 6, "9": 7,
+    "10": 8, "Jack": 9, "Queen": 10, "King": 11, "Ace": 12
+  }, 
+    playerRank = rankings[player['rank']],
+    computerRank = rankings[computer['rank']]
+
+  if (playerRank === computerRank) {
+    console.log("Same!")
+  } else if (playerRank > computerRank) {
+    console.log("Player wins round")
+  } else {
+    console.log("Computer wins round")
+  }
+}

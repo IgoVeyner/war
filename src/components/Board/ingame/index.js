@@ -1,4 +1,18 @@
-const InGame = ({ playerCards, computerCards, tableCards, getNextCards}) => {
+import { useEffect } from 'react'
+
+const InGame = ({ playerCards, computerCards, 
+                  tableCards, getNextCards, 
+                  compareLastCards }) => {
+  useEffect(() => {
+
+    if (tableCards) {
+      compareLastCards()
+    }
+    return () => {
+      
+    };
+  }, [tableCards, compareLastCards]);
+  
   return (
     <div>
       <div>

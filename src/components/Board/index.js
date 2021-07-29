@@ -4,7 +4,7 @@ import {
   removePlayerCard, removeComputerCard
   } from '../../redux/actions/handActions'
 import { addToTable } from '../../redux/actions/tableActions'
-import { getHands, getCard } from "../../services/hands"
+import { getHands, getCard, compareCards } from "../../services/hands"
 import InGame from './ingame'
 import PreGameLobby from './pregame'
 
@@ -40,6 +40,13 @@ const Board = () => {
     dispatch(addToTable(newState))
   }
 
+  const compareLastCards = () => {
+    const lastPlayerCard = cardsOnTable["player"][cardsOnTable["player"].length - 1],
+      lastComputerCard = cardsOnTable["computer"][cardsOnTable["computer"].length  -1]
+    
+    compareCards(lastPlayerCard, lastComputerCard)
+  }
+
   const getNextCards = () => {
     playerTurn()
     computerTurn()
@@ -55,6 +62,7 @@ const Board = () => {
           computerCards={computerCards}
           tableCards={tableCards}
           getNextCards={getNextCards}
+          compareLastCards={compareLastCards}
         />
       }
     </div>
