@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { 
   setPlayerHand, setComputerHand,
@@ -10,19 +11,22 @@ import InGame from './ingame'
 import PreGameLobby from './pregame'
 
 const Board = () => {
-  const dispatch = useDispatch()
-  const playerHand = useSelector(state => state.player)
-  const computerHand = useSelector(state => state.computer)
-  const cardsOnTable = useSelector(state => state.table)
+  const [gameStatus, setGameStatus] = useState(false),
 
-  const playerCards = playerHand['hand'].length
-  const playerUsed = playerHand['used'].length
-  const computerCards = computerHand['hand'].length
-  const computerUsed = computerHand['used'].length
-  const tableCards = cardsOnTable['player'].length + cardsOnTable['computer'].length
+    dispatch = useDispatch(),
+    playerHand = useSelector(state => state.player),
+    computerHand = useSelector(state => state.computer),
+    cardsOnTable = useSelector(state => state.table),
+
+    playerCards = playerHand['hand'].length,
+    playerUsed = playerHand['used'].length,
+    computerCards = computerHand['hand'].length,
+    computerUsed = computerHand['used'].length,
+    tableCards = cardsOnTable['player'].length + cardsOnTable['computer'].length
 
 
   const startGame = () => {
+    setGameStatus(true)
     const hands = getHands()
     dispatch(setPlayerHand(hands[0]))
     dispatch(setComputerHand(hands[1]))
@@ -70,7 +74,7 @@ const Board = () => {
 
   return (
     <div>
-      { playerCards === 0 && computerCards === 0 ? 
+      { gameStatus !== true ? 
         <PreGameLobby startGame={startGame} /> 
         :
         <InGame 
