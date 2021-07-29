@@ -1,4 +1,4 @@
-const InGame = ({ playerCards, computerCards, getNextCards}) => {
+const InGame = ({ playerCards, computerCards, tableCards, getNextCards}) => {
   return (
     <div>
       <div>
@@ -6,6 +6,9 @@ const InGame = ({ playerCards, computerCards, getNextCards}) => {
       </div>
       <div>
         Computer has {computerCards} cards
+      </div>
+      <div>
+        Table has {tableCards} cards
       </div>
       <button onClick={getNextCards}>
         Pick next card
