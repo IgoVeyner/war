@@ -27,6 +27,12 @@ const handlePlayer = (state = {
           used: [...state['used'], ...usedCards]
       }
       
+    case "CLEAR_PLAYER_USED":
+      return {
+        hand: [...state['hand']],
+        used: []
+      }
+      
     default: 
       return state
   }

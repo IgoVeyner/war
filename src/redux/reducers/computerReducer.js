@@ -27,6 +27,12 @@ const handleComputer = (state = {
         used: [...state['used'], ...usedCards]
       }  
 
+    case "CLEAR_COMPUTER_USED":
+      return {
+        hand: [...state['hand']],
+        used: []
+      }
+
     default: 
       return state
   }

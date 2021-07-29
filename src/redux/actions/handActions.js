@@ -26,6 +26,13 @@ const addToUsed = (cards, person) => {
   }
 }
 
+const clearUsed = (cards, person) => {
+  return {
+    type: `CLEAR_${person}_USED`,
+    payload: cards
+  }
+}
+
 export const resetPlayerHand = () => resetHand("PLAYER")
 export const resetComputerHand = () => resetHand("COMPUTER")
 
@@ -37,3 +44,6 @@ export const removeComputerCard = (card) => removeCard(card, "COMPUTER")
 
 export const addToPlayerUsed = (cards) => addToUsed(cards, "PLAYER")
 export const addToComputerUsed = (cards) => addToUsed(cards, "COMPUTER")
+
+export const clearPlayerUsed = (cards) => clearUsed(cards, "PLAYER")
+export const clearComputerUsed = (cards) => clearUsed(cards, "COMPUTER")
