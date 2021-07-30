@@ -4,14 +4,14 @@ const InGame = ({ playerCards, playerUsed,
                   computerCards, computerUsed,
                   tableCards, getNextCards, 
                   compareLastCards, tieStatus }) => {
-  useEffect(() => {
-    if (tableCards && tieStatus === false) {
-      compareLastCards()
-    }
-    return () => {
+  // useEffect(() => {
+  //   if (tableCards && tieStatus === false) {
+  //     compareLastCards()
+  //   }
+  //   return () => {
       
-    };
-  }, [tableCards, compareLastCards, tieStatus]);
+  //   };
+  // }, [tableCards, compareLastCards, tieStatus]);
   
   return (
     <div>

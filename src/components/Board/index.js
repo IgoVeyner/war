@@ -7,6 +7,7 @@ import {
   clearPlayerUsed, clearComputerUsed
   } from '../../redux/actions/handActions'
 import { addToTable, clearTable } from '../../redux/actions/tableActions'
+import useCompareCards from '../../redux/hooks/compareCards'
 import { getHands, getCard, compareCards } from "../../services/hands"
 import InGame from './ingame'
 import PreGameLobby from './pregame'
@@ -63,6 +64,7 @@ const Board = () => {
     const lastPlayerCard = cardsOnTable["player"][cardsOnTable["player"].length - 1],
       lastComputerCard = cardsOnTable["computer"][cardsOnTable["computer"].length  -1]
     
+    console.log(lastPlayerCard, lastComputerCard)
     const result = compareCards(lastPlayerCard, lastComputerCard)
 
     if (result === "TIE") {
@@ -117,6 +119,8 @@ const Board = () => {
       />
     }
   }
+
+  useCompareCards(compareLastCards, cardsOnTable)
 
   return (
     <div>
