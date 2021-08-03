@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 const InGame = ({ playerCards, playerUsed,
                   computerCards, computerUsed,
                   tableCards, getNextCards, 
