@@ -4,7 +4,6 @@ const useCheckWinner = (setWinner, playerHand, computerHand, gameStatus, cardsDe
   
   useEffect(() => {
     if (gameStatus && cardsDelt) {
-      console.log("checking for winner")
       const playerCards = playerHand['hand'].length,
         playerUsed = playerHand['used'].length,
         computerCards = computerHand['hand'].length,
@@ -12,19 +11,15 @@ const useCheckWinner = (setWinner, playerHand, computerHand, gameStatus, cardsDe
   
         if ( playerCards === 0 && playerUsed === 0 && 
           computerCards === 0 && computerUsed === 0 ) {
-            console.log("Tie game!")
+            setWinner("TIE")
           } else if ( playerUsed === 0 && playerCards === 0 ) {
-            console.log("computer wins the game")
+            setWinner("COMPUTER")
           } else if ( computerUsed === 0 && computerCards === 0 ) {
-            console.log("player wins the game", "\nPlayer hand:", playerHand,
-            "\nComputer Hand:", computerHand
-            )
-          } else {
-            console.log("no winner yet")
+            setWinner("PLAYER")
           }
     }
 
-  }, [gameStatus, computerHand, playerHand, cardsDelt]);
+  }, [gameStatus, computerHand, playerHand, cardsDelt, setWinner]);
 }
 
 export default useCheckWinner

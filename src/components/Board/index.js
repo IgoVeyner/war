@@ -113,6 +113,8 @@ const Board = () => {
   const renderView = () => {
     if (gameStatus !== true) {
       return <PreGameLobby startGame={startGame} />
+    } else if (winner) {
+      return <p>{winner}</p>
     } else {
       return <InGame 
         playerCards={playerCards} 
