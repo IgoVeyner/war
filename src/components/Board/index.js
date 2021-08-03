@@ -88,15 +88,15 @@ const Board = () => {
   }
 
   const getNextCards = () => {      
-    if (tieCount === 2) {
+    if (tieCount === 3) {
       setTieStatus(false)
       setTieCount(0)
     } 
 
-    if (tieStatus && tieCount !== 2) {
+    if (tieStatus && tieCount !== 3) {
       setTieCount(tieCount + 1)
     }
-
+    
     const playerCard = playerTurn()
     const computerCard = computerTurn()
 
