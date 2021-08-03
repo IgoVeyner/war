@@ -7,7 +7,7 @@ import {
   clearPlayerUsed, clearComputerUsed
   } from '../../redux/actions/handActions'
 import { addToTable, clearTable } from '../../redux/actions/tableActions'
-import useCompareCards from '../../redux/hooks/compareCards'
+import useCompareCards from '../../redux/hooks/useCompareCards'
 import { getHands, getCard, compareCards } from "../../services/hands"
 import InGame from './ingame'
 import PreGameLobby from './pregame'
@@ -64,27 +64,30 @@ const Board = () => {
     const lastPlayerCard = cardsOnTable["player"][cardsOnTable["player"].length - 1],
       lastComputerCard = cardsOnTable["computer"][cardsOnTable["computer"].length  -1]
     
-    console.log(lastPlayerCard, lastComputerCard)
-    const result = compareCards(lastPlayerCard, lastComputerCard)
+    console.log(lastPlayerCard, lastComputerCard, playerHand, computerHand)
 
-    if (result === "TIE") {
-      setTieStatus(true)
-    } else if (result === "PLAYER") {
-      dispatch(addToPlayerUsed(cardsOnTable))
-      dispatch(clearTable({
-        player: [],
-        computer: []
-      }))
-    } else {
-      dispatch(addToComputerUsed(cardsOnTable))
-      dispatch(clearTable({
-        player: [],
-        computer: []
-      }))
+    if (lastPlayerCard && lastComputerCard) {
+      const result = compareCards(lastPlayerCard, lastComputerCard)
+  
+      if (result === "TIE") {
+        setTieStatus(true)
+      } else if (result === "PLAYER") {
+        dispatch(addToPlayerUsed(cardsOnTable))
+        dispatch(clearTable({
+          player: [],
+          computer: []
+        }))
+      } else {
+        dispatch(addToComputerUsed(cardsOnTable))
+        dispatch(clearTable({
+          player: [],
+          computer: []
+        }))
+      }
     }
   }
 
-  const getNextCards = () => {
+  const getNextCards = () => {      
     if (tieCount === 2) {
       setTieStatus(false)
       setTieCount(0)
@@ -93,7 +96,7 @@ const Board = () => {
     if (tieStatus && tieCount !== 2) {
       setTieCount(tieCount + 1)
     }
-      
+
     const playerCard = playerTurn()
     const computerCard = computerTurn()
 
@@ -114,13 +117,11 @@ const Board = () => {
         computerUsed={computerUsed}
         tableCards={tableCards}
         getNextCards={getNextCards}
-        compareLastCards={compareLastCards}
-        tieStatus={tieStatus}
       />
     }
   }
 
-  useCompareCards(compareLastCards, cardsOnTable)
+  useCompareCards(compareLastCards, cardsOnTable, tieStatus)
 
   return (
     <div>

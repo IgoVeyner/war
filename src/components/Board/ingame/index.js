@@ -3,15 +3,7 @@ import { useEffect } from 'react'
 const InGame = ({ playerCards, playerUsed,
                   computerCards, computerUsed,
                   tableCards, getNextCards, 
-                  compareLastCards, tieStatus }) => {
-  // useEffect(() => {
-  //   if (tableCards && tieStatus === false) {
-  //     compareLastCards()
-  //   }
-  //   return () => {
-      
-  //   };
-  // }, [tableCards, compareLastCards, tieStatus]);
+                }) => {
   
   return (
     <div>
