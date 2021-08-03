@@ -11,6 +11,7 @@ import useCheckWinner from '../../redux/hooks/useCheckWinner'
 import useCompareCards from '../../redux/hooks/useCompareCards'
 import { getHands, getCard, compareCards } from "../../services/hands"
 import InGame from './ingame'
+import PostGame from './postgame'
 import PreGameLobby from './pregame'
 
 const Board = () => {
@@ -68,8 +69,6 @@ const Board = () => {
     const lastPlayerCard = cardsOnTable["player"][cardsOnTable["player"].length - 1],
       lastComputerCard = cardsOnTable["computer"][cardsOnTable["computer"].length  -1]
     
-    console.log(lastPlayerCard, lastComputerCard, playerHand, computerHand)
-
     if (lastPlayerCard && lastComputerCard) {
       const result = compareCards(lastPlayerCard, lastComputerCard)
   
@@ -114,7 +113,7 @@ const Board = () => {
     if (gameStatus !== true) {
       return <PreGameLobby startGame={startGame} />
     } else if (winner) {
-      return <p>{winner}</p>
+      return <PostGame winner={winner} />
     } else {
       return <InGame 
         playerCards={playerCards} 
