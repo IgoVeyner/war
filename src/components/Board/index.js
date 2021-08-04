@@ -10,6 +10,7 @@ import { addToTable, clearTable } from '../../redux/actions/tableActions'
 import { setCount, setTie } from '../../redux/actions/tieActions'
 import useCheckWinner from '../../redux/hooks/useCheckWinner'
 import useCompareCards from '../../redux/hooks/useCompareCards'
+import useEndRound from '../../redux/hooks/useEndRound'
 import { getHands, getCard, compareCards } from "../../services/hands"
 import InGame from './ingame'
 import PostGame from './postgame'
@@ -19,6 +20,7 @@ const Board = () => {
   const [gameStatus, setGameStatus] = useState(false),
     [winner, setWinner] = useState(false),
     [cardsDelt, setCardsDelt] = useState(false),
+    [roundStatus, setRoundStatus] = useState(false),
   
   // Grab State from redux store
     playerHand = useSelector(state => state.player),
@@ -82,8 +84,9 @@ const Board = () => {
     return playCard("COMPUTER")
   },
 
-  getNextCards = () => {      
+  getNextCards = () => { 
     if (tieStatus) setTieCount()
+    setRoundStatus(true)
     addToTableStore(playerTurn(), computerTurn())
   },
 
@@ -151,7 +154,8 @@ const Board = () => {
   }
 
   useCompareCards(compareLastCards, cardsOnTable, tieStatus)
-  useCheckWinner(setWinner, playerHand, computerHand, gameStatus, cardsDelt)
+  useCheckWinner(setWinner, playerHand, computerHand, gameStatus, cardsDelt, roundStatus)
+  useEndRound(roundStatus, setRoundStatus, gameStatus)
 
   return (
     <div>
