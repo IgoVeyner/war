@@ -46,23 +46,29 @@ const Board = () => {
     setCardsDelt(true)
   }
 
-  const playerTurn = () => {
-    if (playerUsed && playerCards === 1) {
-      addToPlayerHand()
-      dispatch(clearPlayerUsed([]))
+  const checkForMoreCards = (player) => {
+    if (player === "PLAYER") {
+      if (playerUsed && playerCards === 1) {
+        addToPlayerHand()
+        dispatch(clearPlayerUsed([]))
+      }
+    } else {
+      if (computerUsed && computerCards === 1) {
+        addToComputerHand()
+        dispatch(clearComputerUsed([]))
+      }
     }
-    
+  }
+
+  const playerTurn = () => {
+    checkForMoreCards("PLAYER")
     const playerCard = getCard(playerHand)
     dispatch(removePlayerCard(playerCard))
     return playerCard
   }
 
   const computerTurn = () => {
-    if (computerUsed && computerCards === 1) {
-      addToComputerHand()
-      dispatch(clearComputerUsed([]))
-    }
-
+    checkForMoreCards("COMPUTER")
     const computerCard = getCard(computerHand)
     dispatch(removeComputerCard(computerCard))
     return computerCard
