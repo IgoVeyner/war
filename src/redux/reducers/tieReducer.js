@@ -1,13 +1,30 @@
 const handleTie = (state = {
   tieStatus: false,
-  count: 0
+  tieCount: 0
                     }, action) => {
   switch (action.type) {
     case "SET_TIE":
-      return action.payload
+      return {
+        tieStatus: action.payload,
+        tieCount: state.tieCount
+      }
 
-    // case "INCREASE_TIE_COUNT":
-    //   return action.payload
+    case "SET_TIE_COUNT":
+      let newState
+
+      if (action.payload > 3) {
+        newState = {
+          tieStatus: false,
+          tieCount: 0,
+        }
+      } else {
+        newState = {
+          tieStatus: true,
+          tieCount: action.payload
+        }
+      }
+      
+      return newState
 
     default:
       return state

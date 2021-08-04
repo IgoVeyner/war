@@ -7,6 +7,7 @@ import {
   clearPlayerUsed, clearComputerUsed
   } from '../../redux/actions/handActions'
 import { addToTable, clearTable } from '../../redux/actions/tableActions'
+import { setCount, setTie } from '../../redux/actions/tieActions'
 import useCheckWinner from '../../redux/hooks/useCheckWinner'
 import useCompareCards from '../../redux/hooks/useCompareCards'
 import { getHands, getCard, compareCards } from "../../services/hands"
@@ -16,24 +17,26 @@ import PreGameLobby from './pregame'
 
 const Board = () => {
   const [gameStatus, setGameStatus] = useState(false),
-    [tieStatus, setTieStatus] = useState(false),
-    [tieCount, setTieCount] = useState(0),
     [winner, setWinner] = useState(false),
     [cardsDelt, setCardsDelt] = useState(false),
   
-    dispatch = useDispatch(),
     playerHand = useSelector(state => state.player),
     computerHand = useSelector(state => state.computer),
     cardsOnTable = useSelector(state => state.table),
-
+    { tieStatus, tieCount } = useSelector(state => state.tie),
+    
+    dispatch = useDispatch(),
     addToPlayerHand = () => dispatch(setPlayerHand(playerHand['used'])),
     addToComputerHand = () => dispatch(setComputerHand(computerHand['used'])),
+    setTieStatus = () => dispatch(setTie(!tieStatus)),
+    setTieCount = (count = tieCount + 1) => dispatch(setCount(count)),
 
     playerCards = playerHand['hand'].length,
     playerUsed = playerHand['used'].length,
     computerCards = computerHand['hand'].length,
     computerUsed = computerHand['used'].length,
     tableCards = cardsOnTable['player'].length + cardsOnTable['computer'].length
+
 
   const startGame = () => {
     setGameStatus(true)
@@ -91,13 +94,8 @@ const Board = () => {
   }
 
   const getNextCards = () => {      
-    if (tieCount === 3) {
-      setTieStatus(false)
-      setTieCount(0)
-    } 
-
-    if (tieStatus && tieCount !== 3) {
-      setTieCount(tieCount + 1)
+    if (tieStatus) {
+      setTieCount()
     }
     
     const playerCard = playerTurn()

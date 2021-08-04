@@ -4,3 +4,10 @@ export const setTie = (tieStatus) => {
     payload: tieStatus
   }
 } 
+
+export const setCount = (count) => {
+  return {
+    type: "SET_TIE_COUNT",
+    payload: count
+  }
+}
