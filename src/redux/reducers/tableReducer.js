@@ -4,7 +4,12 @@ const handleTable = (state = {
                     }, action) => {
   switch (action.type) {
     case "ADD_TO_TABLE":
-      return action.payload
+      const [playerCard, computerCard] = action.payload
+
+      return {
+        player: [...state['player'], playerCard],
+        computer: [...state['computer'], computerCard]
+      }
 
     case "CLEAR_TABLE":
       return action.payload

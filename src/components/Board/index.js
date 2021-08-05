@@ -30,6 +30,8 @@ const Board = () => {
     
   // Dispatch helpers 
     dispatch = useDispatch(),
+    setPlayersHand = (hand) => dispatch(setPlayerHand(hand)),
+    setComputersHand = (hand) => dispatch(setComputerHand(hand)),
     addToPlayerHand = () => dispatch(setPlayerHand(playerHand['used'])),
     addToComputerHand = () => dispatch(setComputerHand(computerHand['used'])),
     addToPlayerUsedPile = () => dispatch(addToPlayerUsed(cardsOnTable)),
@@ -40,24 +42,8 @@ const Board = () => {
     removeComputersCard = (card) => dispatch(removeComputerCard(card)),
     setTieStatus = () => dispatch(setTie(!tieStatus)),
     setTieCount = (count = tieCount + 1) => dispatch(setCount(count)),
-
-  // Game / Dispatch helpers
-    addToTableStore = (playerCard, computerCard) => dispatch(addToTable({
-      player: [...cardsOnTable['player'], playerCard],
-      computer: [...cardsOnTable['computer'], computerCard]
-    })),
-
-    setHands = () => {
-      const hands = getHands()
-      dispatch(setPlayerHand(hands[0]))
-      dispatch(setComputerHand(hands[1]))
-    },
-
-    clearGameTable = () => dispatch(clearTable({
-      player: [],
-      computer: []
-    })),
-
+    addToTableStore = (cards) => dispatch(addToTable(cards)),
+    clearGameTable = () => dispatch(clearTable()),
 
   // Temp hand lengths for development
     playerCards = playerHand['hand'].length,
@@ -74,6 +60,12 @@ const Board = () => {
     setCardsDelt(true)
   },
 
+  setHands = () => {
+    const hands = getHands()
+    setPlayersHand(hands[0])
+    setComputersHand(hands[1])
+  },
+
   playerTurn = () => {
     checkForMoreCards("PLAYER")
     return playCard("PLAYER")
@@ -87,7 +79,7 @@ const Board = () => {
   getNextCards = () => { 
     if (tieStatus) setTieCount()
     setRoundStatus(true)
-    addToTableStore(playerTurn(), computerTurn())
+    addToTableStore([playerTurn(), computerTurn()])
   },
 
   addToHand = (player) => {

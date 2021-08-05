@@ -5,9 +5,12 @@ export const addToTable = (cards) => {
   }
 }
 
-export const clearTable = (cards) => {
+export const clearTable = () => {
   return {
     type: "CLEAR_TABLE",
-    payload: cards
+    payload: {
+      player: [],
+      computer: []
+    }
   }
 }
