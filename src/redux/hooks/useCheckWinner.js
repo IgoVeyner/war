@@ -2,10 +2,10 @@ import { useEffect } from 'react'
 
 const useCheckWinner = (
   setWinner, playerHand, computerHand, gameStatus, 
-  cardsDelt, roundStatus ) => {
+  roundStatus ) => {
   
   useEffect(() => {
-    if (gameStatus && cardsDelt && roundStatus) {
+    if (gameStatus && roundStatus === false) {
       const playerCards = playerHand['hand'].length,
         playerUsed = playerHand['used'].length,
         computerCards = computerHand['hand'].length,
@@ -21,7 +21,7 @@ const useCheckWinner = (
           }
     }
 
-  }, [gameStatus, computerHand, playerHand, cardsDelt, setWinner, roundStatus]);
+  }, [gameStatus, computerHand, playerHand, setWinner, roundStatus]);
 }
 
 export default useCheckWinner

@@ -19,7 +19,6 @@ import PreGameLobby from './pregame'
 const Board = () => {
   const [gameStatus, setGameStatus] = useState(false),
     [winner, setWinner] = useState(false),
-    [cardsDelt, setCardsDelt] = useState(false),
     [roundStatus, setRoundStatus] = useState(false),
   
   // Grab State from redux store
@@ -57,7 +56,6 @@ const Board = () => {
   const startGame = () => {
     setGameStatus(true)
     setHands()
-    setCardsDelt(true)
   },
 
   setHands = () => {
@@ -116,6 +114,7 @@ const Board = () => {
     const lastPlayerCard = cardsOnTable["player"][cardsOnTable["player"].length - 1],
       lastComputerCard = cardsOnTable["computer"][cardsOnTable["computer"].length  -1]
     
+    // console.log(lastPlayerCard, lastComputerCard)
     if (lastPlayerCard && lastComputerCard) {
       const result = compareCards(lastPlayerCard, lastComputerCard)
   
@@ -145,9 +144,9 @@ const Board = () => {
     }
   }
 
-  useCompareCards(compareLastCards, cardsOnTable, tieStatus)
-  useCheckWinner(setWinner, playerHand, computerHand, gameStatus, cardsDelt, roundStatus)
-  useEndRound(roundStatus, setRoundStatus, gameStatus)
+  useCompareCards(compareLastCards, cardsOnTable, tieStatus, setRoundStatus)
+  useCheckWinner(setWinner, playerHand, computerHand, gameStatus, roundStatus)
+  // useEndRound(roundStatus, setRoundStatus, gameStatus)
 
   return (
     <div>
