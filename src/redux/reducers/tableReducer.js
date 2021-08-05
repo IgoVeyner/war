@@ -1,10 +1,6 @@
 const handleTable = (state = {
   player: [],
-  computer: [],
-  last: {
-    player: null,
-    computer: null
-  }
+  computer: []
                     }, action) => {
   switch (action.type) {
     case "ADD_TO_TABLE":
@@ -12,21 +8,13 @@ const handleTable = (state = {
 
       return {
         player: [...state['player'], playerCard],
-        computer: [...state['computer'], computerCard],
-        last: {
-          player: playerCard,
-          computer: computerCard
-        }
+        computer: [...state['computer'], computerCard]
       }
 
     case "CLEAR_TABLE":
       return {
         player: [],
-        computer: [],
-        last: {
-          player: state["last"]["player"],
-          computer: state["last"]["computer"]
-        }
+        computer: []
       }
 
     default:

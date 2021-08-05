@@ -8,6 +8,7 @@ import {
   } from '../../redux/actions/handActions'
 import { addToTable, clearTable } from '../../redux/actions/tableActions'
 import { setCount, setTie } from '../../redux/actions/tieActions'
+import { addToLedger } from '../../redux/actions/ledgerActions'
 import useCheckWinner from '../../redux/hooks/useCheckWinner'
 import useCompareCards from '../../redux/hooks/useCompareCards'
 // import useEndRound from '../../redux/hooks/useEndRound'
@@ -16,6 +17,7 @@ import CardsContainer from '../Cards'
 import InGame from './ingame'
 import PostGame from './postgame'
 import PreGameLobby from './pregame'
+import Ledger from '../Ledger'
 
 const Board = () => {
   const [gameStatus, setGameStatus] = useState(false),
@@ -44,6 +46,7 @@ const Board = () => {
     setTieCount = (count = tieCount + 1) => dispatch(setCount(count)),
     addToTableStore = (cards) => dispatch(addToTable(cards)),
     clearGameTable = () => dispatch(clearTable()),
+    addToGameLedger = (cards) => dispatch(addToLedger(cards)),
 
   // Temp hand lengths for development
     playerCards = playerHand['hand'].length,
@@ -112,11 +115,16 @@ const Board = () => {
   },
 
   compareLastCards = () => {
-    const lastPlayerCard = cardsOnTable["last"]["player"],
-      lastComputerCard = cardsOnTable["last"]["computer"]
+    const lastPlayerCard = cardsOnTable["player"][cardsOnTable["player"].length - 1],
+      lastComputerCard = cardsOnTable["computer"][cardsOnTable["computer"].length - 1]
 
     if (lastPlayerCard && lastComputerCard) {
       const result = compareCards(lastPlayerCard, lastComputerCard)
+
+      addToGameLedger({ 
+        player: lastPlayerCard,
+        computer: lastComputerCard
+      })
   
       if (result === "TIE") {
         setTieStatus(true)
@@ -151,6 +159,7 @@ const Board = () => {
   return (
     <div>
       { renderView() }
+      <Ledger />
       <CardsContainer />
     </div>
   )

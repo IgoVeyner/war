@@ -4,11 +4,13 @@ const useCompareCards = (compareLastCards, cardsOnTable, tieStatus, setRoundStat
   const didMount = useRef(false)
   
   useEffect(() => {
-    if ( tieStatus === false && didMount.current && 
+    if ( didMount.current && 
       cardsOnTable["player"].length && 
       cardsOnTable["computer"].length ) {
-      compareLastCards()
-      setRoundStatus(false)
+        if (tieStatus === false) {
+          compareLastCards()
+        }
+        setRoundStatus(false)
     } else {
       didMount.current = true
     }
