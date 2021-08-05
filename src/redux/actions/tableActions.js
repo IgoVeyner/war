@@ -8,9 +8,6 @@ export const addToTable = (cards) => {
 export const clearTable = () => {
   return {
     type: "CLEAR_TABLE",
-    payload: {
-      player: [],
-      computer: []
-    }
+    payload: null
   }
 }

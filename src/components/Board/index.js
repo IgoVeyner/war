@@ -10,8 +10,9 @@ import { addToTable, clearTable } from '../../redux/actions/tableActions'
 import { setCount, setTie } from '../../redux/actions/tieActions'
 import useCheckWinner from '../../redux/hooks/useCheckWinner'
 import useCompareCards from '../../redux/hooks/useCompareCards'
-import useEndRound from '../../redux/hooks/useEndRound'
+// import useEndRound from '../../redux/hooks/useEndRound'
 import { getHands, getCard, compareCards } from "../../services/hands"
+import CardsContainer from '../Cards'
 import InGame from './ingame'
 import PostGame from './postgame'
 import PreGameLobby from './pregame'
@@ -111,10 +112,9 @@ const Board = () => {
   },
 
   compareLastCards = () => {
-    const lastPlayerCard = cardsOnTable["player"][cardsOnTable["player"].length - 1],
-      lastComputerCard = cardsOnTable["computer"][cardsOnTable["computer"].length  -1]
-    
-    // console.log(lastPlayerCard, lastComputerCard)
+    const lastPlayerCard = cardsOnTable["last"]["player"],
+      lastComputerCard = cardsOnTable["last"]["computer"]
+
     if (lastPlayerCard && lastComputerCard) {
       const result = compareCards(lastPlayerCard, lastComputerCard)
   
@@ -151,6 +151,7 @@ const Board = () => {
   return (
     <div>
       { renderView() }
+      <CardsContainer />
     </div>
   )
 }
