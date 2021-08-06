@@ -1,17 +1,19 @@
 import { useSelector } from "react-redux"
 
-const CardsContainer = () => {
-  // const tableCards = useSelector(state => state.table),
-  //   lastPlayerCard = tableCards["last"]["player"],
-  //   lastComputerCard = tableCards["last"]["computer"]
+const CardsContainer = ({ gameStatus }) => {
+  const allCards = useSelector(state => state.ledger),
+    { tieStatus } = useSelector(state => state.tie)
+  
 
   const renderCards = () => {
-    // if (lastPlayerCard && lastComputerCard) {
-    //   return `${lastPlayerCard.rank} vs ${lastComputerCard.rank}`
-    // } else {
-    //   return "waiting for cards..."
-    return "temp"
-    // }
+    if (gameStatus && allCards.length > 0) {
+      // render the cards
+      const playerCard = allCards[0]['player'],
+        computerCard = allCards[0]['computer']
+
+    } else {
+      // render empty board
+    }
   }
 
   return (

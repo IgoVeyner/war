@@ -159,8 +159,8 @@ const Board = () => {
   return (
     <div>
       { renderView() }
+      <CardsContainer gameStatus={gameStatus} />
       <Ledger />
-      <CardsContainer />
     </div>
   )
 }
