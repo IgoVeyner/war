@@ -11,7 +11,6 @@ import { setCount, setTie } from '../../redux/actions/tieActions'
 import { addToLedger } from '../../redux/actions/ledgerActions'
 import useCheckWinner from '../../redux/hooks/useCheckWinner'
 import useCompareCards from '../../redux/hooks/useCompareCards'
-// import useEndRound from '../../redux/hooks/useEndRound'
 import { getHands, getCard, compareCards } from "../../services/hands"
 import CardsContainer from '../Cards'
 import InGame from './ingame'
@@ -149,7 +148,6 @@ const Board = () => {
   useAddCardsToHand(roundStatus, checkForMoreCards)
   useCompareCards(compareLastCards, cardsOnTable, tieStatus, setRoundStatus)
   useCheckWinner(setWinner, playerHand, computerHand, gameStatus, roundStatus)
-  // useEndRound(roundStatus, setRoundStatus, gameStatus)
 
   return (
     <div>
