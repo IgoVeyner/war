@@ -18,6 +18,7 @@ import InGame from './ingame'
 import PostGame from './postgame'
 import PreGameLobby from './pregame'
 import Ledger from '../Ledger'
+import useAddCardsToHand from '../../redux/hooks/useAddCardsToHand'
 
 const Board = () => {
   const [gameStatus, setGameStatus] = useState(false),
@@ -65,16 +66,17 @@ const Board = () => {
   setHands = () => {
     const hands = getHands()
     setPlayersHand(hands[0])
-    setComputersHand(hands[1])
+    // setComputersHand(hands[1])
+    setComputersHand([{rank: "Ace", suit: "Hearts"}])
   },
 
   playerTurn = () => {
-    checkForMoreCards("PLAYER")
+    // checkForMoreCards("PLAYER")
     return playCard("PLAYER")
   },
 
   computerTurn = () => {
-    checkForMoreCards("COMPUTER")
+    // checkForMoreCards("COMPUTER")
     return playCard("COMPUTER")
   },
 
@@ -93,8 +95,8 @@ const Board = () => {
   },
 
   checkForMoreCards = (player) => {
-    if ( (player === "PLAYER" && playerUsed && playerCards === 1) || 
-      (player === "COMPUTER" && computerUsed && computerCards === 1) ) {
+    if ( (player === "PLAYER" && playerUsed && playerCards === 0) || 
+      (player === "COMPUTER" && computerUsed && computerCards === 0) ) {
       addToHand(player)
       clearUsed(player)
     } 
@@ -152,6 +154,7 @@ const Board = () => {
     }
   }
 
+  useAddCardsToHand(roundStatus, checkForMoreCards)
   useCompareCards(compareLastCards, cardsOnTable, tieStatus, setRoundStatus)
   useCheckWinner(setWinner, playerHand, computerHand, gameStatus, roundStatus)
   // useEndRound(roundStatus, setRoundStatus, gameStatus)
