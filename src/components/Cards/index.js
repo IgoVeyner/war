@@ -3,12 +3,10 @@ import { urls } from "./urlLookup"
 
 const CardsContainer = ({ gameStatus }) => {
   const allCards = useSelector(state => state.ledger),
-    { tieStatus } = useSelector(state => state.tie)
-  
+    { tieCount } = useSelector(state => state.tie)
 
   const renderCards = () => {
-    if (gameStatus && allCards.length > 0) {
-      // render the cards
+    if (gameStatus && allCards.length > 0 && tieCount === 0) {
       const playerCard = Object.values(allCards[0]['player']).join("-of-"),
         computerCard = Object.values(allCards[0]['computer']).join("-of-"),
         cardInfo = [
@@ -21,7 +19,6 @@ const CardsContainer = ({ gameStatus }) => {
       })
 
     } else {
-      // render empty board
       const cardInfo = [
         ["Player", urls["back"], "Card-Back"],
         ["Computer", urls["back"], "Card-Back"]
