@@ -1,5 +1,5 @@
 const createDeck = () => {
-  const suits = ["Hearts", "Spades", "Diamonds", "Clover"]
+  const suits = ["Hearts", "Spades", "Diamonds", "Clubs"]
   const ranks = [
     "2", "3", "4", "5", "6", "7", "8", "9", "10",
     "Jack", "Queen", "King", "Ace"
