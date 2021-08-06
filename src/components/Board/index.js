@@ -11,13 +11,13 @@ import { setCount, setTie } from '../../redux/actions/tieActions'
 import { addToLedger } from '../../redux/actions/ledgerActions'
 import useCheckWinner from '../../redux/hooks/useCheckWinner'
 import useCompareCards from '../../redux/hooks/useCompareCards'
-// import useEndRound from '../../redux/hooks/useEndRound'
 import { getHands, getCard, compareCards } from "../../services/hands"
 import CardsContainer from '../Cards'
 import InGame from './ingame'
 import PostGame from './postgame'
 import PreGameLobby from './pregame'
 import Ledger from '../Ledger'
+import useAddCardsToHand from '../../redux/hooks/useAddCardsToHand'
 
 const Board = () => {
   const [gameStatus, setGameStatus] = useState(false),
@@ -68,15 +68,8 @@ const Board = () => {
     setComputersHand(hands[1])
   },
 
-  playerTurn = () => {
-    checkForMoreCards("PLAYER")
-    return playCard("PLAYER")
-  },
-
-  computerTurn = () => {
-    checkForMoreCards("COMPUTER")
-    return playCard("COMPUTER")
-  },
+  playerTurn = () => playCard("PLAYER"),
+  computerTurn = () => playCard("COMPUTER"),
 
   getNextCards = () => { 
     if (tieStatus) setTieCount()
@@ -93,8 +86,8 @@ const Board = () => {
   },
 
   checkForMoreCards = (player) => {
-    if ( (player === "PLAYER" && playerUsed && playerCards === 1) || 
-      (player === "COMPUTER" && computerUsed && computerCards === 1) ) {
+    if ( (player === "PLAYER" && playerUsed && playerCards === 0) || 
+      (player === "COMPUTER" && computerUsed && computerCards === 0) ) {
       addToHand(player)
       clearUsed(player)
     } 
@@ -152,15 +145,15 @@ const Board = () => {
     }
   }
 
+  useAddCardsToHand(roundStatus, checkForMoreCards)
   useCompareCards(compareLastCards, cardsOnTable, tieStatus, setRoundStatus)
   useCheckWinner(setWinner, playerHand, computerHand, gameStatus, roundStatus)
-  // useEndRound(roundStatus, setRoundStatus, gameStatus)
 
   return (
     <div>
       { renderView() }
+      <CardsContainer gameStatus={gameStatus} />
       <Ledger />
-      <CardsContainer />
     </div>
   )
 }
