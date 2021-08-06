@@ -66,19 +66,11 @@ const Board = () => {
   setHands = () => {
     const hands = getHands()
     setPlayersHand(hands[0])
-    // setComputersHand(hands[1])
-    setComputersHand([{rank: "Ace", suit: "Hearts"}])
+    setComputersHand(hands[1])
   },
 
-  playerTurn = () => {
-    // checkForMoreCards("PLAYER")
-    return playCard("PLAYER")
-  },
-
-  computerTurn = () => {
-    // checkForMoreCards("COMPUTER")
-    return playCard("COMPUTER")
-  },
+  playerTurn = () => playCard("PLAYER"),
+  computerTurn = () => playCard("COMPUTER"),
 
   getNextCards = () => { 
     if (tieStatus) setTieCount()
