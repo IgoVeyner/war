@@ -4,35 +4,38 @@ import { urls } from "./urlLookup"
 const CardsContainer = ({ gameStatus }) => {
   const allCards = useSelector(state => state.ledger),
     { tieCount } = useSelector(state => state.tie)
-
+  
   const renderCards = () => {
+    let cardInfo 
+
     if (gameStatus && allCards.length > 0 && tieCount === 0) {
       const playerCard = Object.values(allCards[0]['player']).join("-of-"),
-        computerCard = Object.values(allCards[0]['computer']).join("-of-"),
-        cardInfo = [
+        computerCard = Object.values(allCards[0]['computer']).join("-of-")
+
+      cardInfo = [
           ["Player", urls[playerCard], playerCard],
           ["Computer", urls[computerCard], computerCard]
         ]
       
-      return cardInfo.map((data, i) => {
-        return renderContainer(data)
-      })
-
     } else {
-      const cardInfo = [
+      cardInfo = [
         ["Player", urls["back"], "Card-Back"],
         ["Computer", urls["back"], "Card-Back"]
       ]
-
-      return cardInfo.map((data, i) => {
-        return renderContainer(data)
-      })
     }
+
+    return mapCardInfo(cardInfo)
   }
 
-  const renderContainer = ([ player, url, text ]) => {
+  const mapCardInfo = (cardInfo) => {
+    return cardInfo.map((data, i) => {
+      return renderContainer(data, i)
+    })
+  }
+
+  const renderContainer = ([ player, url, text ], index) => {
     return (
-      <div>
+      <div key={`cards-${index}`}>
         <h1>{player}</h1>
         <img src={url} alt={text} />
       </div>
