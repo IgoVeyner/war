@@ -35,15 +35,15 @@ const CardsContainer = ({ gameStatus }) => {
 
   const renderContainer = ([ player, url, text ], index) => {
     return (
-      <div key={`cards-${index}`}>
+      <div key={`cards-${index}`} className="card-container">
         <h1>{player}</h1>
-        <img src={url} alt={text} />
+        <img src={url} alt={text} className="card" />
       </div>
     )
   }
 
   return (
-    <div className="cards">
+    <div className="cards-container">
       {renderCards()}
     </div>
   )
