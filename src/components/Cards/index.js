@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { urls } from "./urlLookup"
 
-const CardsContainer = ({ gameStatus }) => {
+const CardsContainer = ({ gameStatus, playerHandLength, computerHandLength }) => {
   const allCards = useSelector(state => state.ledger),
     { tieCount } = useSelector(state => state.tie)
   
@@ -37,6 +37,7 @@ const CardsContainer = ({ gameStatus }) => {
     return (
       <div key={`cards-${index}`} className="card-container">
         <h1>{player}</h1>
+        <h3>Cards: {player === "Player" ? playerHandLength : computerHandLength}</h3>
         <img src={url} alt={text} className="card" />
       </div>
     )
