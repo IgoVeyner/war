@@ -134,14 +134,20 @@ const Board = () => {
     } else if (winner) {
       return <PostGame winner={winner} />
     } else {
-      return <InGame 
-        playerCards={playerCards} 
-        playerUsed={playerUsed}
-        computerCards={computerCards}
-        computerUsed={computerUsed}
-        tableCards={tableCards}
-        getNextCards={getNextCards}
-      />
+      return (
+        <> 
+          <InGame 
+            playerCards={playerCards} 
+            playerUsed={playerUsed}
+            computerCards={computerCards}
+            computerUsed={computerUsed}
+            tableCards={tableCards}
+            getNextCards={getNextCards}
+          />
+        <CardsContainer gameStatus={gameStatus} />
+        <Ledger />
+        </>
+      )
     }
   }
 
@@ -152,8 +158,6 @@ const Board = () => {
   return (
     <div>
       { renderView() }
-      <CardsContainer gameStatus={gameStatus} />
-      <Ledger />
     </div>
   )
 }
