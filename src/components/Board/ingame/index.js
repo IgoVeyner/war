@@ -6,12 +6,6 @@ const InGame = ({ playerCards, playerUsed,
   return (
     <div>
       <div>
-        Player has {playerCards} cards and {playerUsed} in their used pile
-      </div>
-      <div>
-        Computer has {computerCards} cards and {computerUsed} in their used pile
-      </div>
-      <div>
         Table has {tableCards} cards
       </div>
       <button onClick={getNextCards}>

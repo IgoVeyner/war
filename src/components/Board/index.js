@@ -49,6 +49,8 @@ const Board = () => {
     addToGameLedger = (cards) => dispatch(addToLedger(cards)),
 
   // Temp hand lengths for development
+    playerHandLength = playerHand['hand'].length + playerHand['used'].length,
+    computerHandLength = computerHand['hand'].length + computerHand['used'].length,
     playerCards = playerHand['hand'].length,
     playerUsed = playerHand['used'].length,
     computerCards = computerHand['hand'].length,
@@ -145,7 +147,11 @@ const Board = () => {
             tableCards={tableCards}
             getNextCards={getNextCards}
           />
-        <CardsContainer gameStatus={gameStatus} />
+          <CardsContainer 
+            gameStatus={gameStatus} 
+            playerHandLength={playerHandLength}
+            computerHandLength={computerHandLength}
+          />
         </div>
         <Ledger />
         </>
