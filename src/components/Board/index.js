@@ -136,6 +136,7 @@ const Board = () => {
     } else {
       return (
         <> 
+        <div className="game-board">
           <InGame 
             playerCards={playerCards} 
             playerUsed={playerUsed}
@@ -145,6 +146,7 @@ const Board = () => {
             getNextCards={getNextCards}
           />
         <CardsContainer gameStatus={gameStatus} />
+        </div>
         <Ledger />
         </>
       )
@@ -156,7 +158,7 @@ const Board = () => {
   useCheckWinner(setWinner, playerHand, computerHand, gameStatus, roundStatus)
 
   return (
-    <div>
+    <div className="game-board-container">
       { renderView() }
     </div>
   )
