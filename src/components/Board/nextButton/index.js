@@ -1,9 +1,10 @@
 const NextButton = ({ getNextCards }) => {
-
   return (
-    <div>
-      <button onClick={getNextCards}>
-       Next card
+    <div className="button-container">
+      <button
+        className="button-next" 
+        onClick={getNextCards}>
+        Next card
       </button>
     </div>
   )
