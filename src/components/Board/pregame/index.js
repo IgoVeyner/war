@@ -1,8 +1,12 @@
 const PreGameLobby = ({ startGame }) => {
   return (
-  <button onClick={startGame}>
-    Deal Cards
-  </button>
+    <div className="button-container">
+      <button 
+        className="button-deal"
+        onClick={startGame}>
+        Deal
+      </button>
+    </div>
   )
 }
 
