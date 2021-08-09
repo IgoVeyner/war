@@ -13,11 +13,11 @@ import useCheckWinner from '../../redux/hooks/useCheckWinner'
 import useCompareCards from '../../redux/hooks/useCompareCards'
 import { getHands, getCard, compareCards } from "../../services/hands"
 import CardsContainer from '../Cards'
-import InGame from './ingame'
 import PostGame from './postgame'
 import PreGameLobby from './pregame'
 import Ledger from '../Ledger'
 import useAddCardsToHand from '../../redux/hooks/useAddCardsToHand'
+import NextButton from './nextButton'
 
 const Board = () => {
   const [gameStatus, setGameStatus] = useState(false),
@@ -54,9 +54,7 @@ const Board = () => {
     playerCards = playerHand['hand'].length,
     playerUsed = playerHand['used'].length,
     computerCards = computerHand['hand'].length,
-    computerUsed = computerHand['used'].length,
-    tableCards = cardsOnTable['player'].length + cardsOnTable['computer'].length
-
+    computerUsed = computerHand['used'].length
   
   // Game Logic
   const startGame = () => {
@@ -138,22 +136,15 @@ const Board = () => {
     } else {
       return (
         <> 
-        <div className="game-board">
-          <InGame 
-            playerCards={playerCards} 
-            playerUsed={playerUsed}
-            computerCards={computerCards}
-            computerUsed={computerUsed}
-            tableCards={tableCards}
-            getNextCards={getNextCards}
-          />
-          <CardsContainer 
-            gameStatus={gameStatus} 
-            playerHandLength={playerHandLength}
-            computerHandLength={computerHandLength}
-          />
-        </div>
-        <Ledger />
+          <NextButton getNextCards={getNextCards} />
+          <div className="game-board-container">
+            <CardsContainer 
+              gameStatus={gameStatus} 
+              playerHandLength={playerHandLength}
+              computerHandLength={computerHandLength}
+            />
+            <Ledger />
+          </div>
         </>
       )
     }
@@ -164,7 +155,7 @@ const Board = () => {
   useCheckWinner(setWinner, playerHand, computerHand, gameStatus, roundStatus)
 
   return (
-    <div className="game-board-container">
+    <div className="game-container">
       { renderView() }
     </div>
   )
