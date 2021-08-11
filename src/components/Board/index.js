@@ -155,7 +155,7 @@ const Board = () => {
   useCheckWinner(setWinner, playerHand, computerHand, gameStatus, roundStatus)
 
   return (
-    <div className="game-container">
+    <div className={`game-container ${gameStatus ? "ingame" : ""}`}>
       { renderView() }
     </div>
   )
