@@ -1,3 +1,5 @@
+$link-yellow-hover: darken($main-yellow, 15%)
+
 nav 
   background-color: $main-yellow
   color: $dark-grey
@@ -12,8 +14,21 @@ nav
     align-items: center
 
     a
+      display: flex
+      align-items: center
+      justify-content: center
+      width: 100px
+      height: 40px
+      font-family: fantasy
       color: inherit
       text-decoration: none
+      letter-spacing: 0.8px
+      transition: letter-spacing 0.2s ease-in-out
 
-    &:visited
-      color: inherit
+      &:hover
+        background-color: $link-yellow-hover
+        letter-spacing: 1.5px
+        font-size: 17px
+
+      &:visited
+        color: inherit
