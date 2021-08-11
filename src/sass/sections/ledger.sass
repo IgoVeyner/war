@@ -1,3 +1,7 @@
+$color-ledger-header: #CCCCCC
+$color-ledger-data1: #C5CCC2
+$color-ledger-data2: #B8CCC9
+
 .ledger-container 
   margin-top: 2rem
   
@@ -17,3 +21,11 @@
 
 th
   text-align: left
+  background-color: $color-ledger-header
+
+.ledger-data-container 
+  tr
+    background-color: $color-ledger-data1
+
+  tr:nth-of-type(2n)
+    background-color: $color-ledger-data2
