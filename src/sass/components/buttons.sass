@@ -1,3 +1,6 @@
+$button-green: #36AD47
+$button-green-hover: #1ac933
+
 .button-container
   margin: 2rem 0
 
@@ -7,9 +10,21 @@
   padding: $size-s
   border-radius: $size-l
   border: none
+  font-family: 'Open Sans', sans-serif
 
   &:hover
     cursor: pointer
 
 .button-next, .button-deal
   @extend %button
+
+.button-deal
+  color: white
+  background-color: $button-green
+  text-transform: uppercase
+  letter-spacing: 0.5px
+  font-weight: bold
+  transition: background-color 0.1s ease-in-out
+
+  &:hover
+    background-color: $button-green-hover
