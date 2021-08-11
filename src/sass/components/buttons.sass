@@ -1,15 +1,38 @@
+$button-green: #36AD47
+$button-green-hover: #1ac933
+$button-blue: #1b71b2
+$button-blue-hover: #199CFE
+
 .button-container
   margin: 2rem 0
 
 %button
+  color: white
   width: 200px
   height: 40px
+  text-transform: uppercase
+  letter-spacing: 0.5px
+  font-weight: bold
   padding: $size-s
   border-radius: $size-l
   border: none
+  font-family: 'Open Sans', sans-serif
 
   &:hover
     cursor: pointer
 
 .button-next, .button-deal
   @extend %button
+  transition: background-color 0.1s ease-in-out
+
+.button-deal
+  background-color: $button-green
+
+  &:hover
+    background-color: $button-green-hover
+
+.button-next 
+  background-color: $button-blue
+
+  &:hover
+    background-color: $button-blue-hover

@@ -4,7 +4,7 @@ const NextButton = ({ getNextCards }) => {
       <button
         className="button-next" 
         onClick={getNextCards}>
-        Next card
+        Next
       </button>
     </div>
   )

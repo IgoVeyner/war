@@ -18,6 +18,7 @@ import PreGameLobby from './pregame'
 import Ledger from '../Ledger'
 import useAddCardsToHand from '../../redux/hooks/useAddCardsToHand'
 import NextButton from './nextButton'
+import TieDisplay from './tieDisplay'
 
 const Board = () => {
   const [gameStatus, setGameStatus] = useState(false),
@@ -145,6 +146,7 @@ const Board = () => {
             />
             <Ledger />
           </div>
+          {tieStatus ? <TieDisplay tieCount={tieCount} /> : null}
         </>
       )
     }
@@ -155,7 +157,7 @@ const Board = () => {
   useCheckWinner(setWinner, playerHand, computerHand, gameStatus, roundStatus)
 
   return (
-    <div className="game-container">
+    <div className={`game-container ${gameStatus ? "ingame" : ""}`}>
       { renderView() }
     </div>
   )
