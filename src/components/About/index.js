@@ -6,7 +6,7 @@ const About = () => {
         <ol>
           <li>Start by clicking the deal button.</li>
           <li>Click the next button 
-            until either you or the computer is out of cards!</li>
+            until either you, the computer, or both of you are out of cards!</li>
         </ol>        
       </div>
 
