@@ -2,6 +2,8 @@ $button-green: #36AD47
 $button-green-hover: #1ac933
 $button-blue: #1b71b2
 $button-blue-hover: #199CFE
+$button-red: #CC0000
+$button-red-hover: #FF0000
 
 .button-container
   margin: 2rem 0
@@ -36,3 +38,32 @@ $button-blue-hover: #199CFE
 
   &:hover
     background-color: $button-blue-hover
+
+%home-button
+  width: 125px
+  height: 50px
+  border: none
+  cursor: pointer
+  text-transform: uppercase
+  color: white
+  font-weight: bold
+  font-family: 'Open Sans', sans-serif
+
+.button-yes, .button-no
+  @extend %home-button
+
+.button-yes
+  background-color: $button-green
+  border-top-left-radius: $size-l
+  border-bottom-left-radius: $size-l
+  
+  &:hover
+    background-color: $button-green-hover
+
+.button-no
+  background-color: $button-red
+  border-top-right-radius: $size-l
+  border-bottom-right-radius: $size-l
+
+  &:hover
+    background-color: $button-red-hover
