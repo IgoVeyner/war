@@ -37,7 +37,7 @@ const CardsContainer = ({ gameStatus, playerHandLength, computerHandLength }) =>
     return (
       <div key={`cards-${index}`} className="card-container">
         <h1>{player}</h1>
-        <h3>Cards: {player === "Player" ? playerHandLength : computerHandLength}</h3>
+        <h3 className="card-count">Cards: {player === "Player" ? playerHandLength : computerHandLength}</h3>
         <img src={url} alt={text} className="card" />
       </div>
     )
