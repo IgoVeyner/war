@@ -7,6 +7,7 @@ const Ledger = () => {
     return ledger.map((pair, i) => {
       return (
         <tr>
+          <td className='turn'>{ledger.length - i}</td>
           <td>{`${pair['player'].rank} of ${pair['player'].suit}`}</td>
           <td>{`${pair['computer'].rank} of ${pair['computer'].suit}`}</td>
         </tr>
@@ -32,6 +33,7 @@ const Ledger = () => {
               border="1"
             >
               <tr>
+                <th className='turn'>Turn</th>
                 <th>Player</th>
                 <th>Computer</th>
               </tr>
