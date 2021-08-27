@@ -2,11 +2,15 @@ const PostGame = ({ winner }) => {
   const refreshPage = () => {
     window.location.reload(false)
   }
+
+  const lowerCase = () => {
+    return winner.toLowerCase()
+  }
   
   return (
     <div>
-      <h2>{winner}</h2>
-      <button onClick={refreshPage}>Play Again</button>
+      <h1 className="postgame-header">{lowerCase()} Wins!</h1>
+      <button className="button-reset" onClick={refreshPage}>Play Again</button>
     </div>
   )
 }
