@@ -1,9 +1,9 @@
-import { useEffect } from "react"
 import { useDispatch } from "react-redux";
 import { resetComputerHand, resetPlayerHand } from '../../../redux/actions/handActions'
 import { resetLedger } from "../../../redux/actions/ledgerActions";
 import { resetTieCount } from "../../../redux/actions/tieActions";
 import { clearTable } from "../../../redux/actions/tableActions";
+import useResetGame from '../../../redux/hooks/useResetGame'
 
 const PostGame = ({ winner, onPress }) => {
   const dispatch = useDispatch()
@@ -31,14 +31,7 @@ const PostGame = ({ winner, onPress }) => {
     }
   } 
 
-  // TODO: Turn this into custom hook
-  useEffect(() => {
-    return (() => {
-      resetGameLedger()
-      resetHands()
-      resetTable()
-    })
-  }, [])
+  useResetGame(resetGameLedger, resetHands, resetTable)
   
   return (
     <div>
