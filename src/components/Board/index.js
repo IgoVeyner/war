@@ -20,7 +20,7 @@ import useAddCardsToHand from '../../redux/hooks/useAddCardsToHand'
 import NextButton from './nextButton'
 import TieDisplay from './tieDisplay'
 
-const Board = () => {
+const Board = ({ resetGame }) => {
   const [gameStatus, setGameStatus] = useState(false),
     [winner, setWinner] = useState(false),
     [roundStatus, setRoundStatus] = useState(false),
@@ -133,7 +133,7 @@ const Board = () => {
     if (gameStatus !== true) {
       return <PreGameLobby startGame={startGame} />
     } else if (winner) {
-      return <PostGame winner={winner} />
+      return <PostGame winner={winner} onPress={resetGame}/>
     } else {
       return (
         <> 
