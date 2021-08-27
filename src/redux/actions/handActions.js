@@ -1,7 +1,10 @@
 const resetHand = (person) => {
   return {
     type: `RESET_${person}_HAND`,
-    payload: []
+    payload: {
+      hand: [],
+      used: []
+    }
   }
 }
 

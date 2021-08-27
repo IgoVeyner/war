@@ -3,6 +3,9 @@ const handleLedger = (state = [], action) => {
     case "ADD_TO_LEDGER":
       return [action.payload, ...state]
     
+    case "RESET_LEDGER":
+      return []
+
     default:
       return state
   }

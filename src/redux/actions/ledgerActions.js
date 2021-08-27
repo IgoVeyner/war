@@ -4,3 +4,10 @@ export const addToLedger = (cards) => {
     payload: cards
   }
 }
+
+export const resetLedger = () => {
+  return {
+    type: "RESET_LEDGER",
+    payload: []
+  }
+}

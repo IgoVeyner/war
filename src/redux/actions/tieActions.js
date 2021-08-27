@@ -11,3 +11,10 @@ export const setCount = (count) => {
     payload: count
   }
 }
+
+export const resetTieCount = () => {
+  return {
+    type: "RESET_TIE_COUNT",
+    payload: {}
+  }
+}
