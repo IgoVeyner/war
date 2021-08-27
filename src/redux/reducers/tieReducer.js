@@ -26,6 +26,12 @@ const handleTie = (state = {
       
       return newState
 
+    case "RESET_TIE_COUNT":
+      return {
+        tieStatus: false,
+        tieCount: 0
+      }
+
     default:
       return state
   }
