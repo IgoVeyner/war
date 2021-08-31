@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { urls } from "./urlLookup"
+import { urls } from "./urlLookup.tsx"
 
 const CardsContainer = ({ gameStatus, playerHandLength, computerHandLength }) => {
   const allCards = useSelector(state => state.ledger),
