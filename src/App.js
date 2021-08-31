@@ -3,7 +3,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import About from "./components/About";
+import About from "./components/About/index";
 import Board from "./components/Board";
 import Nav from './components/Header/Nav'
 import Home from "./components/Home";
