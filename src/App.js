@@ -7,7 +7,7 @@ import About from "./components/About/index";
 import Board from "./components/Board";
 import Nav from './components/Header/Nav'
 import Home from "./components/Home";
-import NoMatch from "./components/NoMatch";
+import NoMatch from "./components/NoMatch/index";
 import { useState } from 'react'
 
 function App() {
