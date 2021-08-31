@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import About from "./components/About/index";
 import Board from "./components/Board";
-import Nav from './components/Header/Nav'
+import Nav from './components/Header/Nav/index'
 import Home from "./components/Home";
 import NoMatch from "./components/NoMatch/index";
 import { useState } from 'react'
