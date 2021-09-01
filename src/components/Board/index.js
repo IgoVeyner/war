@@ -131,7 +131,7 @@ const Board = ({ resetGame }) => {
 
   const renderView = () => {
     if (gameStatus !== true) {
-      return <PreGameLobby startGame={startGame} />
+      return <PreGameLobby onPress={startGame} />
     } else if (winner) {
       return <PostGame winner={winner} onPress={resetGame}/>
     } else {

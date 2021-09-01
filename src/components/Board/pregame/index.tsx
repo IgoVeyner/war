@@ -1,14 +1,13 @@
-// update with specific function
 type PreGameLobbyProps = {
-  startGame: any
+  onPress: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const PreGameLobby = ({ startGame }: PreGameLobbyProps) => {
+const PreGameLobby = ({ onPress }: PreGameLobbyProps) => {
   return (
     <div className="button-container">
       <button 
         className="button-deal"
-        onClick={startGame}>
+        onClick={onPress}>
         Deal
       </button>
     </div>
