@@ -14,7 +14,7 @@ import useCompareCards from '../../redux/hooks/useCompareCards'
 import { getHands, getCard, compareCards } from "../../services/hands"
 import CardsContainer from '../Cards'
 import PostGame from './postgame'
-import PreGameLobby from './pregame'
+import PreGameLobby from './pregame/index'
 import Ledger from '../Ledger'
 import useAddCardsToHand from '../../redux/hooks/useAddCardsToHand'
 import NextButton from './nextButton'
