@@ -1,9 +1,13 @@
-const PreGameLobby = ({ startGame }) => {
+type PreGameLobbyProps = {
+  onPress: React.MouseEventHandler<HTMLButtonElement>
+}
+
+const PreGameLobby = ({ onPress }: PreGameLobbyProps) => {
   return (
     <div className="button-container">
       <button 
         className="button-deal"
-        onClick={startGame}>
+        onClick={onPress}>
         Deal
       </button>
     </div>

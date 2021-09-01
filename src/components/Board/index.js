@@ -14,11 +14,11 @@ import useCompareCards from '../../redux/hooks/useCompareCards'
 import { getHands, getCard, compareCards } from "../../services/hands"
 import CardsContainer from '../Cards'
 import PostGame from './postgame'
-import PreGameLobby from './pregame'
+import PreGameLobby from './pregame/index'
 import Ledger from '../Ledger'
 import useAddCardsToHand from '../../redux/hooks/useAddCardsToHand'
 import NextButton from './nextButton'
-import TieDisplay from './tieDisplay'
+import TieDisplay from './tieDisplay/index'
 
 const Board = ({ resetGame }) => {
   const [gameStatus, setGameStatus] = useState(false),
@@ -131,7 +131,7 @@ const Board = ({ resetGame }) => {
 
   const renderView = () => {
     if (gameStatus !== true) {
-      return <PreGameLobby startGame={startGame} />
+      return <PreGameLobby onPress={startGame} />
     } else if (winner) {
       return <PostGame winner={winner} onPress={resetGame}/>
     } else {
