@@ -3,11 +3,11 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import About from "./components/About/index";
+import About from "./components/About";
 import Board from "./components/Board";
-import Nav from './components/Header/Nav/index'
+import Nav from './components/Header/Nav'
 import Home from "./components/Home";
-import NoMatch from "./components/NoMatch/index";
+import NoMatch from "./components/NoMatch";
 import { useState } from 'react'
 
 function App() {
