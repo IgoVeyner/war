@@ -1,4 +1,8 @@
-const TieDisplay = ({ tieCount }) => {
+type TieDisplayProps = {
+  tieCount: number
+}
+
+const TieDisplay = ({ tieCount }: TieDisplayProps) => {
   return (
     <div>
       <h2>WAR!</h2>

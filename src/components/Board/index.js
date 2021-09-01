@@ -18,7 +18,7 @@ import PreGameLobby from './pregame'
 import Ledger from '../Ledger'
 import useAddCardsToHand from '../../redux/hooks/useAddCardsToHand'
 import NextButton from './nextButton'
-import TieDisplay from './tieDisplay'
+import TieDisplay from './tieDisplay/index'
 
 const Board = ({ resetGame }) => {
   const [gameStatus, setGameStatus] = useState(false),
