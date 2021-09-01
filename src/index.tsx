@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import './sass/app.sass';
-import App from './App.tsx';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux'
