@@ -12,7 +12,7 @@ import { addToLedger } from '../../redux/actions/ledgerActions'
 import useCheckWinner from '../../redux/hooks/useCheckWinner'
 import useCompareCards from '../../redux/hooks/useCompareCards'
 import { getHands, getCard, compareCards } from "../../services/hands"
-import CardsContainer from '../Cards'
+import CardsContainer from '../Cards/index'
 import PostGame from './postgame/index'
 import PreGameLobby from './pregame/index'
 import Ledger from '../Ledger'
