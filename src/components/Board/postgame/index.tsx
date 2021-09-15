@@ -5,7 +5,12 @@ import { resetTieCount } from "../../../redux/actions/tieActions";
 import { clearTable } from "../../../redux/actions/tableActions";
 import useResetGame from '../../../redux/hooks/useResetGame'
 
-const PostGame = ({ winner, onPress }) => {
+type PostGameProps = {
+  winner: string,
+  onPress: React.MouseEventHandler<HTMLButtonElement>
+}
+
+const PostGame = ({ winner, onPress }: PostGameProps) => {
   const dispatch = useDispatch()
 
   const resetHands = () => {
@@ -23,7 +28,7 @@ const PostGame = ({ winner, onPress }) => {
     return `${winner.toLowerCase()} Wins!`
   }
 
-  const displayWinner = () => {
+  const displayWinner = (): string => {
     if (winner === "TIE") {
       return "Tie Game!"
     } else {
