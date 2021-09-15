@@ -13,41 +13,51 @@ import useCheckWinner from '../../redux/hooks/useCheckWinner'
 import useCompareCards from '../../redux/hooks/useCompareCards'
 import { getHands, getCard, compareCards } from "../../services/hands"
 import CardsContainer from '../Cards'
-import PostGame from './postgame/index.tsx'
+import PostGame from './postgame/index'
 import PreGameLobby from './pregame/index'
 import Ledger from '../Ledger'
 import useAddCardsToHand from '../../redux/hooks/useAddCardsToHand'
 import NextButton from './nextButton/index'
 import TieDisplay from './tieDisplay/index'
+import { RootState } from '../../redux/reducers/index'
 
-const Board = ({ resetGame }) => {
+type BoardProps = {
+  resetGame: React.MouseEventHandler<HTMLButtonElement>
+}
+
+interface Hands {
+  player: [][],
+  computer: [][]
+}
+
+const Board = ({ resetGame }: BoardProps) => {
   const [gameStatus, setGameStatus] = useState(false),
     [winner, setWinner] = useState(''),
     [roundStatus, setRoundStatus] = useState(false),
   
   // Grab State from redux store
-    playerHand = useSelector(state => state.player),
-    computerHand = useSelector(state => state.computer),
-    cardsOnTable = useSelector(state => state.table),
-    { tieStatus, tieCount } = useSelector(state => state.tie),
+    playerHand = useSelector((state: RootState) => state.player),
+    computerHand = useSelector((state: RootState) => state.computer),
+    cardsOnTable: Hands = useSelector((state: RootState) => state.table),
+    { tieStatus, tieCount } = useSelector((state: RootState) => state.tie),
     
   // Dispatch helpers 
     dispatch = useDispatch(),
-    setPlayersHand = (hand) => dispatch(setPlayerHand(hand)),
-    setComputersHand = (hand) => dispatch(setComputerHand(hand)),
+    setPlayersHand = (hand: object[]) => dispatch(setPlayerHand(hand)),
+    setComputersHand = (hand: object[]) => dispatch(setComputerHand(hand)),
     addToPlayerHand = () => dispatch(setPlayerHand(playerHand['used'])),
     addToComputerHand = () => dispatch(setComputerHand(computerHand['used'])),
     addToPlayerUsedPile = () => dispatch(addToPlayerUsed(cardsOnTable)),
     addToComputerUsedPile = () =>  dispatch(addToComputerUsed(cardsOnTable)),
     clearPlayerUsedPile = () => dispatch(clearPlayerUsed([])), 
     clearComputerUsedPile = () => dispatch(clearComputerUsed([])),
-    removePlayersCard = (card) => dispatch(removePlayerCard(card)),
-    removeComputersCard = (card) => dispatch(removeComputerCard(card)),
+    removePlayersCard = (card: object) => dispatch(removePlayerCard(card)),
+    removeComputersCard = (card: object) => dispatch(removeComputerCard(card)),
     setTieStatus = () => dispatch(setTie(!tieStatus)),
     setTieCount = (count = tieCount + 1) => dispatch(setCount(count)),
-    addToTableStore = (cards) => dispatch(addToTable(cards)),
+    addToTableStore = (cards: object[]) => dispatch(addToTable(cards)),
     clearGameTable = () => dispatch(clearTable()),
-    addToGameLedger = (cards) => dispatch(addToLedger(cards)),
+    addToGameLedger = (cards: Hands) => dispatch(addToLedger(cards)),
 
   // Temp hand lengths for development
     playerHandLength = playerHand['hand'].length + playerHand['used'].length,
@@ -78,15 +88,15 @@ const Board = ({ resetGame }) => {
     addToTableStore([playerTurn(), computerTurn()])
   },
 
-  addToHand = (player) => {
+  addToHand = (player: string) => {
     player === "PLAYER" ? addToPlayerHand() : addToComputerHand()
   },
 
-  clearUsed = (player) => {
+  clearUsed = (player: string) => {
     player === "PLAYER" ? clearPlayerUsedPile() : clearComputerUsedPile()
   },
 
-  checkForMoreCards = (player) => {
+  checkForMoreCards = (player: string) => {
     if ( (player === "PLAYER" && playerUsed && playerCards === 0) || 
       (player === "COMPUTER" && computerUsed && computerCards === 0) ) {
       addToHand(player)
@@ -94,17 +104,17 @@ const Board = ({ resetGame }) => {
     } 
   },
 
-  removeCard = (card, player) => {
+  removeCard = (card: object, player: string) => {
     player === "PLAYER" ? removePlayersCard(card) : removeComputersCard(card)
   },
 
-  playCard = (player) => {
+  playCard = (player: string) => {
     const card = player === "PLAYER" ? getCard(playerHand) : getCard(computerHand)
     removeCard(card, player)
     return card
   },
 
-  addToUsed = (player) => {
+  addToUsed = (player: string) => {
     player === "PLAYER" ? addToPlayerUsedPile() : addToComputerUsedPile() 
   },
 
@@ -121,7 +131,7 @@ const Board = ({ resetGame }) => {
       })
   
       if (result === "TIE") {
-        setTieStatus(true)
+        setTieStatus()
       } else {
         addToUsed(result)
         clearGameTable()

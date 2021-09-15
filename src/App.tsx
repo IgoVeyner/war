@@ -4,7 +4,7 @@ import {
   Route
 } from "react-router-dom";
 import About from "./components/About";
-import Board from "./components/Board";
+import Board from "./components/Board/index";
 import Nav from './components/Header/Nav'
 import Home from "./components/Home";
 import NoMatch from "./components/NoMatch";
