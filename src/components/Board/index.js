@@ -17,7 +17,7 @@ import PostGame from './postgame'
 import PreGameLobby from './pregame/index'
 import Ledger from '../Ledger'
 import useAddCardsToHand from '../../redux/hooks/useAddCardsToHand'
-import NextButton from './nextButton'
+import NextButton from './nextButton/index'
 import TieDisplay from './tieDisplay/index'
 
 const Board = ({ resetGame }) => {
