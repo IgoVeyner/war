@@ -5,7 +5,7 @@ import handlePlayer from "./playerReducer"
 import handleTable from "./tableReducer"
 import handleTie from "./tieReducer"
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   player: handlePlayer,
   computer: handleComputer,
   table: handleTable,
@@ -13,4 +13,4 @@ const rootReducer = combineReducers({
   ledger: handleLedger
 })
 
-export default rootReducer
+export type RootState = ReturnType<typeof rootReducer>

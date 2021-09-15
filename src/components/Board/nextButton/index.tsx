@@ -1,4 +1,8 @@
-const NextButton = ({ getNextCards }) => {
+type NextButtonProps = {
+  getNextCards: React.MouseEventHandler<HTMLButtonElement>
+}
+
+const NextButton = ({ getNextCards }: NextButtonProps) => {
   return (
     <div className="button-container">
       <button

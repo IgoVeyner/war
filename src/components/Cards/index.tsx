@@ -1,16 +1,24 @@
 import { useSelector } from "react-redux"
-import { urls } from "./urlLookup.tsx"
+import { urls } from "./urlLookup"
+import { RootState } from '../../redux/reducers/index'
 
-const CardsContainer = ({ gameStatus, playerHandLength, computerHandLength }) => {
-  const allCards = useSelector(state => state.ledger),
-    { tieCount } = useSelector(state => state.tie)
+type CardsContainerProps = {
+  gameStatus: Boolean,
+  playerHandLength: Number,
+  computerHandLength: Number
+}
+
+const CardsContainer = ({ gameStatus, playerHandLength, computerHandLength }: 
+  CardsContainerProps) => {
+  const allCards = useSelector((state: RootState) => state.ledger),
+    { tieCount } = useSelector((state: RootState) => state.tie)
   
   const renderCards = () => {
-    let cardInfo 
+    let cardInfo: any
 
     if (gameStatus && allCards.length > 0 && tieCount === 0) {
-      const playerCard = Object.values(allCards[0]['player']).join("-of-"),
-        computerCard = Object.values(allCards[0]['computer']).join("-of-")
+      const playerCard: string = Object.values(allCards[0]['player']).join("-of-"),
+        computerCard: string = Object.values(allCards[0]['computer']).join("-of-")
 
       cardInfo = [
           ["Player", urls[playerCard], playerCard],
@@ -27,13 +35,13 @@ const CardsContainer = ({ gameStatus, playerHandLength, computerHandLength }) =>
     return mapCardInfo(cardInfo)
   }
 
-  const mapCardInfo = (cardInfo) => {
-    return cardInfo.map((data, i) => {
+  const mapCardInfo = (cardInfo: any[]) => {
+    return cardInfo.map((data: string[], i: number) => {
       return renderContainer(data, i)
     })
   }
 
-  const renderContainer = ([ player, url, text ], index) => {
+  const renderContainer = ([ player, url, text ]: string[], index: number) => {
     return (
       <div key={`cards-${index}`} className="card-container">
         <h1>{player}</h1>
