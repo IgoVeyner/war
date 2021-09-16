@@ -1,7 +1,4 @@
-interface Hands {
-  player: [][],
-  computer: [][]
-}
+import { Hands } from "../../components/Board/index"
 
 const resetHand = (person: string) => {
   return {
