@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux"
+import { RootState } from '../../redux/reducers/index'
 
 const Ledger = () => {
-  const ledger = useSelector(state => state.ledger)
+  const ledger = useSelector((state: RootState) => state.ledger)
 
   const renderHistory = () => {
     return ledger.map((pair, i) => {
@@ -22,7 +23,6 @@ const Ledger = () => {
         className="ledger-outer"
         cellSpacing="0"
         cellPadding="0"
-        border="0"
         >
         <tr>
           <td>
@@ -30,7 +30,6 @@ const Ledger = () => {
               className="ledger-header"
               cellSpacing="0"
               cellPadding="8px"
-              border="1"
             >
               <tr>
                 <th className='turn'>Turn</th>
@@ -47,7 +46,6 @@ const Ledger = () => {
                 className="ledger-data"
                 cellSpacing="0"
                 cellPadding="8px"
-                border="1"
               >
                   {renderHistory()}
               </table>
