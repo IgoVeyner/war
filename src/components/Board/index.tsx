@@ -15,7 +15,7 @@ import { getHands, getCard, compareCards } from "../../services/hands"
 import CardsContainer from '../Cards/index'
 import PostGame from './postgame/index'
 import PreGameLobby from './pregame/index'
-import Ledger from '../Ledger'
+import Ledger from '../Ledger/index'
 import useAddCardsToHand from '../../redux/hooks/useAddCardsToHand'
 import NextButton from './nextButton/index'
 import TieDisplay from './tieDisplay/index'
