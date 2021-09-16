@@ -25,7 +25,7 @@ type BoardProps = {
   resetGame: React.MouseEventHandler<HTMLButtonElement>
 }
 
-interface Hands {
+export interface Hands {
   player: [][],
   computer: [][]
 }
