@@ -1,3 +1,8 @@
+interface Hands {
+  player: [][],
+  computer: [][]
+}
+
 const resetHand = (person: string) => {
   return {
     type: `RESET_${person}_HAND`,
@@ -8,28 +13,28 @@ const resetHand = (person: string) => {
   }
 }
 
-const setHand = (cards: any[], person: string) => {
+const setHand = (cards: {}[], person: string) => {
   return {
     type: `SET_${person}_HAND`,
     payload: cards
   }
 }
 
-const removeCard = (card: any[], person: string) => {
+const removeCard = (card: object, person: string) => {
   return {
     type: `REMOVE_${person}_CARD`,
     payload: card
   }
 }
 
-const addToUsed = (cards: any[], person: string) => {
+const addToUsed = (cards: Hands, person: string) => {
   return {
     type: `ADD_TO_${person}_USED`,
     payload: cards
   }
 }
 
-const clearUsed = (cards: any[], person: string) => {
+const clearUsed = (cards: [], person: string) => {
   return {
     type: `CLEAR_${person}_USED`,
     payload: cards
@@ -39,14 +44,14 @@ const clearUsed = (cards: any[], person: string) => {
 export const resetPlayerHand = () => resetHand("PLAYER")
 export const resetComputerHand = () => resetHand("COMPUTER")
 
-export const setPlayerHand = (cards: any) => setHand(cards, "PLAYER")
-export const setComputerHand = (cards: any) => setHand(cards, "COMPUTER")
+export const setPlayerHand = (cards: object[]) => setHand(cards, "PLAYER")
+export const setComputerHand = (cards: object[]) => setHand(cards, "COMPUTER")
 
-export const removePlayerCard = (card: any) => removeCard(card, "PLAYER")
-export const removeComputerCard = (card: any) => removeCard(card, "COMPUTER")
+export const removePlayerCard = (card: object) => removeCard(card, "PLAYER")
+export const removeComputerCard = (card: object) => removeCard(card, "COMPUTER")
 
-export const addToPlayerUsed = (cards: any) => addToUsed(cards, "PLAYER")
-export const addToComputerUsed = (cards: any) => addToUsed(cards, "COMPUTER")
+export const addToPlayerUsed = (cards: Hands) => addToUsed(cards, "PLAYER")
+export const addToComputerUsed = (cards: Hands) => addToUsed(cards, "COMPUTER")
 
-export const clearPlayerUsed = (cards: any) => clearUsed(cards, "PLAYER")
-export const clearComputerUsed = (cards: any) => clearUsed(cards, "COMPUTER")
+export const clearPlayerUsed = (cards: []) => clearUsed(cards, "PLAYER")
+export const clearComputerUsed = (cards: []) => clearUsed(cards, "COMPUTER")
