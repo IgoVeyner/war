@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const useAddCardsToHand = (roundStatus, checkForMoreCards) => {
+const useAddCardsToHand = (roundStatus: boolean, checkForMoreCards: any) => {
  useEffect(() => {
    if (roundStatus === false) {
     checkForMoreCards("PLAYER")
