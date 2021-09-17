@@ -30,6 +30,11 @@ export interface Hands {
   computer: [][]
 }
 
+export interface Hand {
+  hand: object[],
+  used: object[]
+}
+
 const Board = ({ resetGame }: BoardProps) => {
   const [gameStatus, setGameStatus] = useState(false),
   [winner, setWinner] = useState(''),
