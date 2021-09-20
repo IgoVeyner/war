@@ -11,7 +11,7 @@ import { setCount, setTie } from '../../redux/actions/tieActions'
 import { addToLedger } from '../../redux/actions/ledgerActions'
 import useCheckWinner from '../../redux/hooks/useCheckWinner'
 import useCompareCards from '../../redux/hooks/useCompareCards'
-import { getHands, getCard, compareCards } from "../../services/hands"
+import { getHands, getCard, compareCards, Card } from "../../services/hands"
 import CardsContainer from '../Cards/index'
 import PostGame from './postgame/index'
 import PreGameLobby from './pregame/index'
@@ -26,13 +26,23 @@ type BoardProps = {
 }
 
 export interface Hands {
-  player: [][],
-  computer: [][]
+  player: Hand,
+  computer: Hand
 }
 
 export interface Hand {
-  hand: object[],
-  used: object[]
+  hand: Card[],
+  used: Card[]
+}
+
+export interface CardsOnTable {
+  player: Card[],
+  computer: Card[]
+}
+
+export interface LedgerCards {
+  player: Card,
+  computer: Card
 }
 
 const Board = ({ resetGame }: BoardProps) => {
@@ -43,7 +53,7 @@ const Board = ({ resetGame }: BoardProps) => {
   // Grab State from redux store
   playerHand = useSelector((state: RootState) => state.player),
   computerHand = useSelector((state: RootState) => state.computer),
-  cardsOnTable: Hands = useSelector((state: RootState) => state.table),
+  cardsOnTable: CardsOnTable = useSelector((state: RootState) => state.table),
   { tieStatus, tieCount } = useSelector((state: RootState) => state.tie),
   
   // Dispatch helpers 
@@ -62,7 +72,7 @@ const Board = ({ resetGame }: BoardProps) => {
   setTieCount = (count = tieCount + 1) => dispatch(setCount(count)),
   addToTableStore = (cards: object[]) => dispatch(addToTable(cards)),
   clearGameTable = () => dispatch(clearTable()),
-  addToGameLedger = (cards: Hands) => dispatch(addToLedger(cards)),
+  addToGameLedger = (cards: LedgerCards) => dispatch(addToLedger(cards)),
   
   // Temp hand lengths for development
   playerHandLength = playerHand['hand'].length + playerHand['used'].length,

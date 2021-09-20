@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux"
 import { RootState } from '../../redux/reducers/index'
+import { LedgerCards } from "../Board/index"
 
 const Ledger = () => {
-  const ledger = useSelector((state: RootState) => state.ledger)
+  const ledger: LedgerCards[] = useSelector((state: RootState) => state.ledger)
 
   const renderHistory = () => {
     return ledger.map((pair, i) => {

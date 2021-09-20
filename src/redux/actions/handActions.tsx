@@ -1,4 +1,4 @@
-import { Hands } from "../../components/Board/index"
+import { CardsOnTable } from "../../components/Board/index"
 
 const resetHand = (person: string) => {
   return {
@@ -24,7 +24,7 @@ const removeCard = (card: object, person: string) => {
   }
 }
 
-const addToUsed = (cards: Hands, person: string) => {
+const addToUsed = (cards: CardsOnTable, person: string) => {
   return {
     type: `ADD_TO_${person}_USED`,
     payload: cards
@@ -47,8 +47,8 @@ export const setComputerHand = (cards: object[]) => setHand(cards, "COMPUTER")
 export const removePlayerCard = (card: object) => removeCard(card, "PLAYER")
 export const removeComputerCard = (card: object) => removeCard(card, "COMPUTER")
 
-export const addToPlayerUsed = (cards: Hands) => addToUsed(cards, "PLAYER")
-export const addToComputerUsed = (cards: Hands) => addToUsed(cards, "COMPUTER")
+export const addToPlayerUsed = (cards: CardsOnTable) => addToUsed(cards, "PLAYER")
+export const addToComputerUsed = (cards: CardsOnTable) => addToUsed(cards, "COMPUTER")
 
 export const clearPlayerUsed = (cards: []) => clearUsed(cards, "PLAYER")
 export const clearComputerUsed = (cards: []) => clearUsed(cards, "COMPUTER")

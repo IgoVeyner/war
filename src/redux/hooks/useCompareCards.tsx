@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
-import { Hands } from '../../components/Board';
+import { CardsOnTable } from '../../components/Board';
 
-const useCompareCards = (compareLastCards: CallableFunction, cardsOnTable: Hands, 
+const useCompareCards = (compareLastCards: CallableFunction, cardsOnTable: CardsOnTable, 
   tieStatus: boolean, setRoundStatus: CallableFunction) => {
   const didMount = useRef(false)
   
