@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 
-const useResetGame = (resetGameLedger, resetHands, resetTable) => {
+const useResetGame = (resetGameLedger: CallableFunction, 
+  resetHands: CallableFunction, resetTable: CallableFunction) => {
   useEffect(() => {
     return (() => {
       resetGameLedger()
