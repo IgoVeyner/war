@@ -1,4 +1,4 @@
-const handleLedger = (state = [], action) => {
+const handleLedger = (state = [], action: any) => {
   switch (action.type) {
     case "ADD_TO_LEDGER":
       return [action.payload, ...state]

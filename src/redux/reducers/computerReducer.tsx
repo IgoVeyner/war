@@ -1,7 +1,7 @@
 const handleComputer = (state = {
   hand: [],
   used: []
-                      }, action) => {
+                      }, action: any) => {
   switch (action.type) {
     case "RESET_COMPUTER_HAND":
       return action.payload
@@ -19,7 +19,7 @@ const handleComputer = (state = {
       }
 
     case "ADD_TO_COMPUTER_USED":
-      const [ playerCards, computerCards ] = Object.values(action.payload),
+      const [ playerCards, computerCards ]: [][] = Object.values(action.payload),
         usedCards = [...playerCards, ...computerCards]
 
       return {

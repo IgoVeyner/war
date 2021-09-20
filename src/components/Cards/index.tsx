@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import { urls } from "./urlLookup"
 import { RootState } from '../../redux/reducers/index'
+import { Hands } from '../Board/index'
 
 type CardsContainerProps = {
   gameStatus: Boolean,
@@ -10,7 +11,7 @@ type CardsContainerProps = {
 
 const CardsContainer = ({ gameStatus, playerHandLength, computerHandLength }: 
   CardsContainerProps) => {
-  const allCards = useSelector((state: RootState) => state.ledger),
+  const allCards: Hands[] = useSelector((state: RootState) => state.ledger),
     { tieCount } = useSelector((state: RootState) => state.tie)
   
   const renderCards = () => {

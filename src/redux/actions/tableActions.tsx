@@ -1,4 +1,4 @@
-export const addToTable = (cards) => {
+export const addToTable = (cards: object[]) => {
   return {
     type: "ADD_TO_TABLE",
     payload: cards

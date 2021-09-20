@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
+import { Hand } from '../../components/Board';
 
 const useCheckWinner = (
-  setWinner, playerHand, computerHand, gameStatus, 
-  roundStatus ) => {
+  setWinner: any, playerHand: Hand, computerHand: Hand, gameStatus: boolean, 
+  roundStatus: boolean) => {
   
   useEffect(() => {
     if (gameStatus && roundStatus === false) {

@@ -1,3 +1,10 @@
+import { Hand } from '../components/Board/index'
+
+export interface Card {
+  rank: string,
+  suit: string,
+}
+
 const createDeck = () => {
   const suits = ["Hearts", "Spades", "Diamonds", "Clubs"]
   const ranks = [
@@ -19,11 +26,11 @@ const createDeck = () => {
   return deck
 }
 
-export const getRandomCard = (deck) => {
+export const getRandomCard = (deck: Card[]) => {
   return deck.splice(Math.floor(Math.random() * deck.length), 1)
 }
 
-export const getCard = (deck) => {
+export const getCard = (deck: Hand) => {
   return deck['hand'][Math.floor(Math.random() * deck['hand'].length)]
 }
 
@@ -39,8 +46,8 @@ export const getHands = () => {
   return [deck, hand2]
 }
 
-export const compareCards = (player, computer) => {
-  const rankings = {
+export const compareCards = (player: Card, computer: Card) => {
+  const rankings: any = {
     "2": 0, "3": 1, "4": 2, "5": 3, "6": 4, "7": 5, "8": 6, "9": 7,
     "10": 8, "Jack": 9, "Queen": 10, "King": 11, "Ace": 12
   }, 

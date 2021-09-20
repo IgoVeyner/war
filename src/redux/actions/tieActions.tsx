@@ -1,11 +1,11 @@
-export const setTie = (tieStatus) => {
+export const setTie = (tieStatus: boolean) => {
   return {
     type: "SET_TIE",
     payload: tieStatus
   }
 } 
 
-export const setCount = (count) => {
+export const setCount = (count: number) => {
   return {
     type: "SET_TIE_COUNT",
     payload: count
