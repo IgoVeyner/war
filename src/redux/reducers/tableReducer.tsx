@@ -1,7 +1,7 @@
 const handleTable = (state = {
   player: [],
   computer: []
-                    }, action) => {
+                    }, action: any) => {
   switch (action.type) {
     case "ADD_TO_TABLE":
       const [playerCard, computerCard] = action.payload
