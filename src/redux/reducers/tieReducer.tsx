@@ -1,7 +1,7 @@
 const handleTie = (state = {
   tieStatus: false,
   tieCount: 0
-                    }, action) => {
+                    }, action: any) => {
   switch (action.type) {
     case "SET_TIE":
       return {
